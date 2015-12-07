@@ -22,5 +22,5 @@ public class GiftParticleContants {
 
     public static final String BROADCAST_GIFTPARTICLE_BACKKEY = "youku.laifeng.broadcast.giftparticle.backkey";
 
-    public static final String GIFT_BASE = "xingmeng_gift_";
+    public static final String GIFT_BASE = "";
 }

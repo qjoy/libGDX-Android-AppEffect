@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +41,8 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        setAssetes();
         m_receiveBroadCast = new ReceiveBroadCast();
         IntentFilter filter = new IntentFilter();
         filter.setPriority(800);
@@ -62,48 +65,68 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
         findViewById(R.id.btn2).setOnClickListener(this);
         findViewById(R.id.btn3).setOnClickListener(this);
 
-        //确保sd上面有此文件夹
-        final  String externalPath = "Crazy Together/Gifts" + File.separator + GiftParticleContants.GIFT_BASE + 7;
-
-        if (!GiftParticleEffectView.fileIsExist(externalPath))
-        {
-            dialog("图片资源文件不存在或者路径不正确，请查看测试代码:"+utils.getLineInfo());
-        }
-
         findViewById(R.id.add1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, externalPath, GiftParticleContants.GIFT_PARTICLETYPE_FIRE, 200);
+                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_FIRE, 200);
             }
         });
 
         findViewById(R.id.add2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, externalPath, GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX1, 1000);
+                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX1, 1000);
             }
         });
 
         findViewById(R.id.add3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, externalPath, GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX2, 1500);
+                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX2, 1500);
             }
         });
 
         findViewById(R.id.add4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, externalPath, GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX3, 2000);
+                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX3, 2000);
             }
         });
 
         findViewById(R.id.add5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, externalPath, GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX4, 3000);
+                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX4, 3000);
             }
         });
+
+        findViewById(R.id.random).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                m_weakHandler.postDelayed(new SmallRunnable(), 1);
+                m_weakHandler.postDelayed(new BigRunnable(), 1);
+                findViewById(R.id.random).setEnabled(false);
+            }
+        });
+    }
+
+    private class SmallRunnable implements Runnable{
+
+        @Override
+        public void run() {
+            m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_FIRE, 200);
+            m_weakHandler.postDelayed(new SmallRunnable(), 250);
+        }
+    }
+
+    private class BigRunnable implements Runnable{
+
+        @Override
+        public void run() {
+            int index = (int)(Math.random() * 3 + 1);
+            m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), index, 2000);
+            m_weakHandler.postDelayed(new BigRunnable(), 10000);
+        }
     }
 
     @Override
@@ -232,6 +255,37 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
         });
 
         builder.create().show();
+    }
+
+    private void setAssetes(){
+        File sd= Environment.getExternalStorageDirectory();
+        String path=sd.getPath()+"/libgdxDemo";
+        File file=new File(path);
+        if(!file.exists()) {
+            file.mkdir();
+            for (int i=1; i<18;i++){
+                String filename = "/"+i;
+                utils.copy("gifts"+filename, path + filename);
+            }
+        }
+        else{
+
+        }
+    }
+
+    private String getRandomGift(){
+
+        String index = String.valueOf((int)(Math.random() * 17)+1);
+        Log.d("MainActivity", "gift index:"+index);
+
+        final  String externalPath = "libgdxDemo" + File.separator + GiftParticleContants.GIFT_BASE + index;
+
+        if (!GiftParticleEffectView.fileIsExist(externalPath))
+        {
+            dialog("图片资源文件不存在或者路径不正确，请查看测试代码:"+utils.getLineInfo());
+        }
+
+        return externalPath;
     }
 
 }
