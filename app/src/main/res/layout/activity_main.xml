@@ -1,12 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#ffd5ebf0">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/floralwhite"
+                tools:context=".MainActivity">
 
     <fragment
-        android:name="alex.com.gdxdemo.giftparticlewidget.GiftParticleFragment"
         android:id="@+id/libgdxFrag"
+        android:name="alex.com.gdxdemo.giftparticlewidget.GiftParticleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
@@ -14,10 +15,10 @@
 
     <ScrollView
         android:id="@+id/scrollv"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="20dp"
         >
 
         <TextView
@@ -25,6 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
+            android:textColor="@color/cornflowerblue"
+            android:textSize="10dp"
             />
 
     </ScrollView>
@@ -32,98 +35,160 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_height="120dp"
         android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/interuptdashsharp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
         >
-        <Button
-            android:id="@+id/btn1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Normal Activity"
-            />
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="DialogStyle Activity"
-            />
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Dialog"
-            />
-    </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="Interference factor"
+            android:textColor="#63a219"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/testbtnsharp"
+                android:text="Normal Activity"
+                android:textColor="@color/word_dark"
+                android:textSize="14dp"
+                />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/testbtnsharp"
+                android:text="DialogStyle Activity"
+                android:textColor="@color/word_dark"
+                android:textSize="14dp"
+                />
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/testbtnsharp"
+                android:text="Dialog"
+                android:textColor="@color/word_dark"
+                android:textSize="14dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/particledashsharp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
         >
-        <Button
-            android:id="@+id/add1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add Fire"
-            android:textSize="12dp"
-            android:padding="10dp"
-            android:layout_margin="6dp"
-            android:background="#f1f1f1"
-            />
-        <Button
-            android:id="@+id/add2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add Box1"
-            android:textSize="12dp"
-            android:padding="10dp"
-            android:layout_margin="6dp"
-            android:background="#f1f1f1"
-            />
-        <Button
-            android:id="@+id/add3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add Box2"
-            android:textSize="12dp"
-            android:padding="10dp"
-            android:layout_margin="6dp"
-            android:background="#f1f1f1"
-            />
-        <Button
-            android:id="@+id/add4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add Box3"
-            android:textSize="12dp"
-            android:padding="10dp"
-            android:layout_margin="6dp"
-            android:background="#f1f1f1"
-            />
-        <Button
-            android:id="@+id/add5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add Box4"
-            android:textSize="12dp"
-            android:padding="10dp"
-            android:layout_margin="6dp"
-            android:background="#f1f1f1"
-            />
-    </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="paticle style"
+            android:textColor="@color/cornflowerblue"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/add1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/paticlestylebtnsharp"
+                android:padding="6dp"
+                android:text="Paticle Fire"
+                android:textColor="@color/word_dark"
+                android:textSize="12dp"
+                />
+
+            <Button
+                android:id="@+id/add2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/paticlestylebtnsharp"
+                android:padding="6dp"
+                android:text="Paticle Box1"
+                android:textColor="@color/word_dark"
+                android:textSize="12dp"
+                />
+
+            <Button
+                android:id="@+id/add3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/paticlestylebtnsharp"
+                android:padding="6dp"
+                android:text="Paticle Box2"
+                android:textColor="@color/word_dark"
+                android:textSize="12dp"
+                />
+
+            <Button
+                android:id="@+id/add4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/paticlestylebtnsharp"
+                android:padding="6dp"
+                android:text="Paticle Box3"
+                android:textColor="@color/word_dark"
+                android:textSize="12dp"
+                />
+
+            <Button
+                android:id="@+id/add5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/paticlestylebtnsharp"
+                android:padding="6dp"
+                android:text="Paticle Box4"
+                android:textColor="@color/word_dark"
+                android:textSize="12dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
