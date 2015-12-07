@@ -1,12 +1,14 @@
 package alex.com.gdxdemo.giftparticlewidget;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,12 +44,14 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     private boolean m_isDestorying = false;
     //Fragment 处于OnStop标志位
     private boolean m_isStoping = false;
+    //Screen 是否需要重建播放
+    private boolean m_isNeedBuild =true;
 
     private WeakHandler mHandler = new WeakHandler();
 
     public void PlayAdd(int pathtype, String pathstring, int paticletype, int dur) {
 
-        if (m_isStoping)
+        if (m_isStoping && !isScreenLock())
             return;
 
         if (pathstring == null)
@@ -143,6 +147,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
 
     public void preDestory(){
         m_isDestorying = true;
+        m_isStoping = true;
     }
 
     @Nullable
@@ -150,27 +155,25 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         m_viewRooter = inflater.inflate(R.layout.lf_layout_giftparticle, null);
-
-        particleEffectView = new GiftParticleEffectView();
-        View effectview = CreateGLAlpha(particleEffectView);
-        mContainer = (LinearLayout) m_viewRooter.findViewById(R.id.container);
-        mContainer.addView(effectview);
-
-        Gdx.input.setInputProcessor(this);
-        Gdx.input.setCatchBackKey(true);
-
         return m_viewRooter;
     }
 
-    public void clean(){
-        particleEffectView.dispose();
+    public void cleanGDX(){
+        try {
+            particleEffectView.dispose();
+        }catch (Exception e){}
         mContainer.removeAllViews();
         particleEffectView = null;
+    }
+
+    public void buildGDX(){
 
         particleEffectView = new GiftParticleEffectView();
         View effectview = CreateGLAlpha(particleEffectView);
         mContainer = (LinearLayout) m_viewRooter.findViewById(R.id.container);
         mContainer.addView(effectview);
+        Gdx.input.setInputProcessor(this);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
@@ -178,14 +181,24 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
         Log.d(TAG, "onStart");
         m_isStoping = false;
         super.onStart();
+        if (m_isNeedBuild)
+            buildGDX();
+        isScreenLock();
     }
 
     @Override
     public void onStop() {
         Log.d(TAG, "onStop");
         m_isStoping = true;
+        if (!isScreenLock()) {
+            cleanGDX();
+            m_isNeedBuild = true;
+        }
+        else
+        {
+            m_isNeedBuild = false;
+        }
         super.onStop();
-        clean();
     }
 
     @Override
@@ -198,7 +211,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     public void onPause() {
         Log.d(TAG, "onPause");
         super.onPause();
-        if (!m_isDestorying)
+        if (!m_isDestorying && !isScreenLock())
             super.onResume();
     }
 
@@ -264,5 +277,12 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     @Override
     public boolean scrolled(int i) {
         return false;
+    }
+
+    private boolean isScreenLock(){
+        PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = pm.isScreenOn();//如果为true，则表示屏幕“亮”了，否则屏幕“暗”了。
+        Log.d(TAG, "isScreenLock:"+!isScreenOn);
+        return !isScreenOn;
     }
 }

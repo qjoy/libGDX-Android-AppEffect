@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">gdxdemo</string>
+    <string name="app_name">LibGDX Demo</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
