@@ -47,7 +47,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     //Screen 是否需要重建播放
     private boolean m_isNeedBuild =true;
 
-    private WeakHandler mHandler = new WeakHandler();
+    private WeakHandler m_WeakHandler = new WeakHandler();
 
     public void PlayAdd(int pathtype, String pathstring, int paticletype, int dur) {
 
@@ -69,7 +69,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
                         GiftParticleEffectView.ParticleAnimationType.ANIMATION_TYPE_NULL,
                         isLand);
 
-                mHandler.postDelayed(new Runnable() {
+                m_WeakHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         Intent intent = new Intent();
@@ -213,6 +213,14 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
         super.onPause();
         if (!m_isDestorying && !isScreenLock())
             super.onResume();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+
+        mContainer.removeAllViews();
+        buildGDX();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
