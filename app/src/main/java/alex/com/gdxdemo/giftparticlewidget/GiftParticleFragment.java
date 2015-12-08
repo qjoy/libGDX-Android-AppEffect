@@ -191,7 +191,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
         Log.d(TAG, "onStop");
         m_isStoping = true;
         if (!isScreenLock()) {
-            cleanGDX();
+            mContainer.removeAllViews();
             m_isNeedBuild = true;
         }
         else
