@@ -31,11 +31,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.badoo.mobile:android-weak-handler:1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.facebook.rebound:rebound:0.3.6'
 
     compile files('libs/gdx.jar')
     compile files('libs/gdx-backend-android.jar')
-    compile files('libs/gdx-box2d.jar')
-    compile files('libs/gdx-box2d-gwt.jar')
-    compile files('libs/gdx-box2d-natives.jar')
     compile files('libs/gdx-natives.jar')
 }

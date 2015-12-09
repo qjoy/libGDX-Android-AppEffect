@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,10 +24,11 @@ import alex.com.gdxdemo.giftparticlewidget.GiftParticleEffectView;
 import alex.com.gdxdemo.giftparticlewidget.GiftParticleFragment;
 import alex.com.gdxdemo.testcode.HalfScreenActivity;
 import alex.com.gdxdemo.testcode.NormalActivity;
+import alex.com.gdxdemo.testcode.SpringEffect;
 import alex.com.gdxdemo.testcode.utils;
 
 
-public class MainActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks ,View.OnClickListener{
+public class MainActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks{
 
     private GiftParticleFragment m_libgdxFgm;
     private TextView m_tvLog;
@@ -61,53 +61,71 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
         m_scrollv = (ScrollView) findViewById(R.id.scrollv);
         m_tvLog = (TextView) findViewById(R.id.log);
 
-        findViewById(R.id.btn1).setOnClickListener(this);
-        findViewById(R.id.btn2).setOnClickListener(this);
-        findViewById(R.id.btn3).setOnClickListener(this);
-
-        findViewById(R.id.add1).setOnClickListener(new View.OnClickListener() {
+        SpringEffect.doEffectSticky(findViewById(R.id.btn1), new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
+                NormalActivity.launch(MainActivity.this);
+            }
+        });
+
+        SpringEffect.doEffectSticky(findViewById(R.id.btn2), new Runnable() {
+            @Override
+            public void run() {
+                HalfScreenActivity.launch(MainActivity.this);
+            }
+        });
+
+        SpringEffect.doEffectSticky(findViewById(R.id.btn3), new Runnable() {
+            @Override
+            public void run() {
+                dialogTest();
+            }
+        });
+
+        SpringEffect.doEffectSticky(findViewById(R.id.add1), new Runnable() {
+            @Override
+            public void run() {
                 m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_FIRE, 200);
             }
         });
 
-        findViewById(R.id.add2).setOnClickListener(new View.OnClickListener() {
+        SpringEffect.doEffectSticky(findViewById(R.id.add2), new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX1, 1000);
             }
         });
 
-        findViewById(R.id.add3).setOnClickListener(new View.OnClickListener() {
+        SpringEffect.doEffectSticky(findViewById(R.id.add3), new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX2, 1500);
             }
         });
 
-        findViewById(R.id.add4).setOnClickListener(new View.OnClickListener() {
+        SpringEffect.doEffectSticky(findViewById(R.id.add4), new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX3, 2000);
             }
         });
 
-        findViewById(R.id.add5).setOnClickListener(new View.OnClickListener() {
+        SpringEffect.doEffectSticky(findViewById(R.id.add5), new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX4, 3000);
             }
         });
 
-        findViewById(R.id.random).setOnClickListener(new View.OnClickListener() {
+        SpringEffect.doEffectSticky(findViewById(R.id.random), new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 m_weakHandler.postDelayed(new SmallRunnable(), 1);
                 m_weakHandler.postDelayed(new BigRunnable(), 1);
                 findViewById(R.id.random).setEnabled(false);
             }
         });
+
     }
 
     private class SmallRunnable implements Runnable{
@@ -174,22 +192,6 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
             if (intent.getAction().equals(GiftParticleContants.BROADCAST_GIFTPARTICLE_BACKKEY)) {
                 checkquit();
             }
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        String name = "";
-        switch (v.getId()){
-            case R.id.btn1:
-                NormalActivity.launch(this);
-                break;
-            case R.id.btn2:
-                HalfScreenActivity.launch(this);
-                break;
-            case R.id.btn3:
-                dialogTest();
-                break;
         }
     }
 
