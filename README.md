@@ -8,7 +8,7 @@
 
 Gif较大，可能需要较长时间加载，或者直接查看[视频效果](http://player.youku.com/player.php/sid/XMTQwOTIyMjIyOA==/v.swf)
 
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/Totoal.gif" width = "300" height = "500" alt="图片名称" align=center />
+![image](http://7xox5k.com1.z0.glb.clouddn.com/Untitled.gif)
 
 
 ####导语 [libGDX](https://libgdx.badlogicgames.com)
@@ -18,6 +18,7 @@ Gif较大，可能需要较长时间加载，或者直接查看[视频效果](ht
 	3. 引入中我们遇到哪些问题，如何解决它们的；
 	4. 有没有什么副作用呢，我们该如何看待；
 	5. 推荐
+	6. 下一步
 		
 ![image](https://libgdx.badlogicgames.com/img/logo.png)
 
@@ -44,21 +45,21 @@ libGDX实现粒子效果，无论是计算（运行在C上）还是绘制（Open
 
 Memery表现：
 
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-memery(crazhmode).png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-memery(crazhmode).png" width = "520" height = "150" alt="图片名称" align=center />
 
 CPU表现：
 
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-cpu(crazymode).png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-cpu(crazymode).png" width = "520" height = "150" alt="图片名称" align=center />
 
 再以Nexus5上运行示例代码中的CrazyMode为例：
 
 Memery表现：
 
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/nexus-memery(crazymode).png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/nexus-memery(crazymode).png" width = "520" height = "150" alt="图片名称" align=center />
 
 CPU表现：
 
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-cpu(crazymode).png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-cpu(crazymode).png" width = "520" height = "150" alt="图片名称" align=center />
 
 
 #####核心知识点
@@ -346,7 +347,7 @@ CreateGLAplha函数两个作用：
 ***
 
 ##副作用
-经过讲activity到fragment的改进，规避了结构上的所有问题，目前你使用libGDX展示粒子效果，就像使用原生的fragment一样简单。如果你要使用libGDX的粒子效果，需要引入一个v7的so，两个jar包，他们会使得你的apk大概会增加1.8M的空间，我想这个也算是使用此引擎的一个副作用吧。
+经过activity到fragment的改进，规避了结构上的所有问题，目前你使用libGDX展示粒子效果，就像使用原生的fragment一样简单。如果你要使用libGDX的粒子效果，需要引入一个v7的so，两个jar包，他们会使得你的apk大概会增加1.8M的空间，我想这个也算是使用此引擎的一个副作用吧。
 
 ***
 ##推荐
