@@ -8,7 +8,7 @@
 
 Gif较大，可能需要较长时间加载，或者直接查看[视频效果](http://player.youku.com/player.php/sid/XMTQwOTIyMjIyOA==/v.swf)
 
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/Totoal.gif" width = "200" height = "350" alt="图片名称" align=center />
+
 
 ####导语 [libGDX](https://libgdx.badlogicgames.com)
 	libGDX是一个小有名气的跨平台游戏开发引擎，文章中我们会介绍如下几点：
