@@ -14,6 +14,8 @@ import com.facebook.rebound.SpringSystem;
  */
 public class SpringEffect {
 
+    private static final String TAG = "SpringEffect";
+
     /***
      * down/up时展示spring效果，up成功时出发Runnable操作
      *

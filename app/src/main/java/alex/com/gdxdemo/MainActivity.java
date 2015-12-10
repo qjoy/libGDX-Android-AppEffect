@@ -36,6 +36,7 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
     private SystemReceiveBroadCast m_systemreceiveBroadCast;
     private WeakHandler m_weakHandler = new WeakHandler();
     private ScrollView m_scrollv;
+    private boolean isdestoryed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +133,8 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
 
         @Override
         public void run() {
+            if (isdestoryed)
+                return;
             m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_FIRE, 200);
             m_weakHandler.postDelayed(new SmallRunnable(), 250);
         }
@@ -141,6 +144,8 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
 
         @Override
         public void run() {
+            if (isdestoryed)
+                return;
             int index = (int)(Math.random() * 3 + 1);
             m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), index, 2000);
             m_weakHandler.postDelayed(new BigRunnable(), 10000);
@@ -209,6 +214,7 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
 
     @Override
     public void finish() {
+        isdestoryed = true;
         m_libgdxFgm.preDestory();
         super.finish();
     }
@@ -265,7 +271,7 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
         File file=new File(path);
         if(!file.exists()) {
             file.mkdir();
-            for (int i=1; i<18;i++){
+            for (int i=1; i<24;i++){
                 String filename = "/"+i;
                 utils.copy("gifts"+filename, path + filename);
             }
@@ -277,7 +283,7 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
 
     private String getRandomGift(){
 
-        String index = String.valueOf((int)(Math.random() * 17)+1);
+        String index = String.valueOf((int)(Math.random() * 23)+1);
         Log.d("MainActivity", "gift index:"+index);
 
         final  String externalPath = "libgdxDemo" + File.separator + GiftParticleContants.GIFT_BASE + index;

@@ -288,9 +288,14 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     }
 
     private boolean isScreenLock(){
-        PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
-        boolean isScreenOn = pm.isScreenOn();//如果为true，则表示屏幕“亮”了，否则屏幕“暗”了。
-        Log.d(TAG, "isScreenLock:"+!isScreenOn);
-        return !isScreenOn;
+        try {
+            PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+            boolean isScreenOn = pm.isScreenOn();//如果为true，则表示屏幕“亮”了，否则屏幕“暗”了。
+            Log.d(TAG, "isScreenLock:" + !isScreenOn);
+            return !isScreenOn;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
