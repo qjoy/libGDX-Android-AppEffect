@@ -43,21 +43,21 @@ libGDX实现粒子效果，无论是计算（运行在C上）还是绘制（Open
 
 Memery表现：
 
-<img src="http://cejnc.img47.wal8.com/img47/533704_20151207163918/144973410692.png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-memery(crazhmode).png" width = "500" height = "150" alt="图片名称" align=center />
 
 CPU表现：
 
-<img src="http://cejnc.img47.wal8.com/img47/533704_20151207163918/14497341068.png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-cpu(crazymode).png" width = "500" height = "150" alt="图片名称" align=center />
 
 再以Nexus5上运行示例代码中的CrazyMode为例：
 
 Memery表现：
 
-<img src="http://cejnc.img47.wal8.com/img47/533704_20151207163918/14497341067.png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/nexus-memery(crazymode).png" width = "500" height = "150" alt="图片名称" align=center />
 
 CPU表现：
 
-<img src="http://cejnc.img47.wal8.com/img47/533704_20151207163918/144973410656.png" width = "500" height = "150" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/xiaomi-cpu(crazymode).png" width = "500" height = "150" alt="图片名称" align=center />
 
 
 #####核心知识点
@@ -280,7 +280,7 @@ CreateGLAplha函数两个作用：
     	.......................
     </RelativeLayout> 
 
-<img src="http://cejnc.img46.wal8.com/img46/533704_20151207163918/144947773273.png" width = "300" height = "360" alt="图片名称" align=center />       
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/layers.png" width = "300" height = "360" alt="图片名称" align=center />       
 虽然我们在上一步骤中获得了一个android framework层的view，但我们取得此view仅仅能够也仅仅为了把他加入到现有的app中，在此fragment上的绘制以及touch响应都会被libGDX层截获。*(无论是google还是官方github上还是stackoverflow的提问中，都有人问过类似的问题，例如：‘将我们写好的继承自AndroidFragmentApplication的fragment植入到app中后，他下一层的按钮无法点击，手势无法响应，怎么办？’，我看到官方的回答大致是‘这个问题超越了libGDX的使用以及解决范畴...balabala’)*
 **我们怎么处理呢？虽然我们知道了此fragment中真正主宰者是libGDX中的ApplicationListener/AndroidFragmentApplication，render以及touch也都被他处理，但是render和touch两者还是有个区别，如果我们将此fragment放在最下层，touch会被覆盖在此fragment的上层view处理，render也由于层级覆盖问题，应该看不到此fragment，但是我们在上一个步骤中那个CreateGLAlpha中，设置了OpenGL层级，那么理论上，touch依然会被上层的view处理，而render犹豫此绘制在Top上，也就能够显示出来了。那么理论如此，现实如何呢？答案是一致的，‘成功’。**
 
@@ -328,7 +328,7 @@ CreateGLAplha函数两个作用：
 ####5.使用新版本libGDX，我之前走过的弯路
 其实，这个粒子特效我大概半年之前就实现了，但是我之前使用的libGDX并没有提供AndroidFragmentApplication类，而是仅仅提供了，我们之前提到过一小下的那个继承子Activity的AndroidApplication，迫不得已，我当时的做法是，将粒子特效做在了一个继承自AndroidApplication的activity上面，这个activity是个dialog风格的，完全透明。很不完美的实现了需求，为什么不完美呢？
 
-<img src="http://cejnc.img47.wal8.com/img47/533704_20151207163918/14497585074.png" width = "400" height = "350" alt="图片名称" align=center />
+<img src="http://7xox5k.com1.z0.glb.clouddn.com/interupt.png" width = "400" height = "350" alt="图片名称" align=center />
 
 大致以下几点：
 	
