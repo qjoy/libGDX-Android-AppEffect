@@ -158,7 +158,13 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
         return m_viewRooter;
     }
 
-    public void cleanGDX(){
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		buildGDX();
+	}
+
+	public void cleanGDX(){
         try {
             particleEffectView.dispose();
         }catch (Exception e){}
@@ -181,23 +187,26 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
         Log.d(TAG, "onStart");
         m_isStoping = false;
         super.onStart();
-        if (m_isNeedBuild)
-            buildGDX();
-        isScreenLock();
+
+	    particleEffectView.setCanDraw(true);
+//        if (m_isNeedBuild)
+//            buildGDX();
+//        isScreenLock();
     }
 
     @Override
     public void onStop() {
         Log.d(TAG, "onStop");
         m_isStoping = true;
-        if (!isScreenLock()) {
-            mContainer.removeAllViews();
-            m_isNeedBuild = true;
-        }
-        else
-        {
-            m_isNeedBuild = false;
-        }
+//        if (!isScreenLock()) {
+//            mContainer.removeAllViews();
+//            m_isNeedBuild = true;
+//        }
+//        else
+//        {
+//            m_isNeedBuild = false;
+//        }
+	    particleEffectView.setCanDraw(false);
         super.onStop();
     }
 

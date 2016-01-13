@@ -42,6 +42,8 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 	private boolean mIsLand = false;
 
+	private boolean m_candraw = true;
+
 //	Object mLockRenderOpt = new Object();
 
 	public enum ParticleAnimationType {
@@ -109,6 +111,25 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 	}
 
+	public void setCanDraw(boolean candraw) {
+		m_candraw = candraw;
+
+		if (!m_candraw) {
+			for (int i = 0; i < mParticles.size(); i++) {
+
+				ParticleInfo particleInfo = mParticles.get(i);
+
+				mParticles.remove(particleInfo);
+				particleInfo.particle.dispose();
+				i--;
+
+				onStateListener.OnFinish(particleInfo.animationType);
+
+			}
+			return;
+		}
+	}
+
 	@Override
 	public void render() {
 
@@ -117,6 +138,21 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 		if (forceOver)
 			return;
+
+		if (!m_candraw) {
+			for (int i = 0; i < mParticles.size(); i++) {
+
+				ParticleInfo particleInfo = mParticles.get(i);
+
+				mParticles.remove(particleInfo);
+				particleInfo.particle.dispose();
+				i--;
+
+				onStateListener.OnFinish(particleInfo.animationType);
+
+			}
+			return;
+		}
 
 //		动态加入需要展示的粒子效果
 		dataLogicGet();

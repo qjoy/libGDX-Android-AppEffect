@@ -37,6 +37,9 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
     private WeakHandler m_weakHandler = new WeakHandler();
     private ScrollView m_scrollv;
     private boolean isdestoryed = false;
+	private boolean m_bOpenCrazyMode = false;
+	private SmallRunnable m_smallRunnable = new SmallRunnable();
+	private BigRunnable m_bigRunnable = new BigRunnable();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,26 +108,37 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
         });
 
         SpringEffect.doEffectSticky(findViewById(R.id.add4), new Runnable() {
-            @Override
-            public void run() {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX3, 2000);
-            }
+	        @Override
+	        public void run() {
+		        m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX3, 2000);
+	        }
         });
 
         SpringEffect.doEffectSticky(findViewById(R.id.add5), new Runnable() {
-            @Override
-            public void run() {
-                m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX4, 3000);
-            }
+	        @Override
+	        public void run() {
+		        m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_WATER_BOX4, 3000);
+	        }
         });
 
+	    final TextView crazymodeBtn = (TextView)findViewById(R.id.random);
         SpringEffect.doEffectSticky(findViewById(R.id.random), new Runnable() {
-            @Override
-            public void run() {
-                m_weakHandler.postDelayed(new SmallRunnable(), 1);
-                m_weakHandler.postDelayed(new BigRunnable(), 1);
-                findViewById(R.id.random).setEnabled(false);
-            }
+	        @Override
+	        public void run() {
+		        if (m_bOpenCrazyMode ==false) {
+			        m_weakHandler.postDelayed(m_smallRunnable, 1);
+			        m_weakHandler.postDelayed(m_bigRunnable, 1);
+
+			        crazymodeBtn.setText("close CrazyMode");
+		        }
+		        else{
+			        m_weakHandler.removeCallbacks(m_bigRunnable);
+			        m_weakHandler.removeCallbacks(m_smallRunnable);
+			        crazymodeBtn.setText("open CrazyMode");
+		        }
+
+		        m_bOpenCrazyMode = !m_bOpenCrazyMode;
+	        }
         });
 
     }
@@ -136,7 +150,7 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
             if (isdestoryed)
                 return;
             m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), GiftParticleContants.GIFT_PARTICLETYPE_FIRE, 200);
-            m_weakHandler.postDelayed(new SmallRunnable(), 250);
+            m_weakHandler.postDelayed(m_smallRunnable, 250);
         }
     }
 
@@ -148,7 +162,7 @@ public class MainActivity extends FragmentActivity implements AndroidFragmentApp
                 return;
             int index = (int)(Math.random() * 3 + 1);
             m_libgdxFgm.PlayAdd(GiftParticleContants.GIFT_PATHTYPE_EXTEND, getRandomGift(), index, 2000);
-            m_weakHandler.postDelayed(new BigRunnable(), 10000);
+            m_weakHandler.postDelayed(m_bigRunnable, 10000);
         }
     }
 
