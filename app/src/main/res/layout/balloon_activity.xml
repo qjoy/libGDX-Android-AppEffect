@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/floralwhite"
+                tools:context=".GiftParticleEffectActivity">
+
+    <fragment
+        android:id="@+id/libgdxFrag"
+        android:name="alex.com.gdxdemo.balloonparticlewidget.BalloonParticleFragment"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
+
+    <ScrollView
+        android:id="@+id/scrollv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:textColor="@color/cornflowerblue"
+            android:textSize="10dp"
+            />
+
+    </ScrollView>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="5dp"
+		android:background="@drawable/particledashsharp"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:padding="10dp"
+		>
+
+		<Button
+			android:id="@+id/addballoon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="6dp"
+			android:layout_weight="1"
+			android:background="@drawable/paticlestylebtnsharp"
+			android:padding="6dp"
+			android:text="like"
+			android:textColor="@color/word_dark"
+			android:textSize="12dp"
+			/>
+
+		<Button
+			android:id="@+id/random"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="6dp"
+			android:background="@drawable/paticlestylecrazybtnsharp"
+			android:padding="6dp"
+			android:text="open CrazyMode"
+			android:textColor="@color/white"
+			android:textSize="12dp"
+			/>
+	</LinearLayout>
+
+</RelativeLayout>

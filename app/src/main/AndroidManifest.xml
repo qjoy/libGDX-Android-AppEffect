@@ -8,17 +8,32 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+	    <activity
+		    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+		    android:name=".MainActivity"
+		    android:label="@string/app_name"
+		    >
+		    <intent-filter>
+			    <action android:name="android.intent.action.MAIN" />
+
+			    <category android:name="android.intent.category.LAUNCHER" />
+		    </intent-filter>
+	    </activity>
+
         <activity
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:name=".MainActivity"
+            android:name=".GiftParticleEffectActivity"
             android:label="@string/app_name"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+	    <activity
+		    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+		    android:name=".BalloonParticleEffectActivity"
+		    android:label="@string/app_name"
+		    >
+	    </activity>
 
         <activity android:name=".testcode.NormalActivity"></activity>
 
@@ -28,4 +43,5 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
