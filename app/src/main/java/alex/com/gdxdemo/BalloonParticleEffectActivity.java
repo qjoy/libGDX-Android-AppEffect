@@ -7,10 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -19,16 +17,13 @@ import android.widget.Toast;
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import com.badoo.mobile.util.WeakHandler;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import alex.com.gdxdemo.balloonparticlewidget.BalloonParticleContants;
 import alex.com.gdxdemo.balloonparticlewidget.BalloonParticleEvents;
 import alex.com.gdxdemo.balloonparticlewidget.BalloonParticleFragment;
 import alex.com.gdxdemo.giftparticlewidget.GiftParticleContants;
-import alex.com.gdxdemo.giftparticlewidget.GiftParticleEffectView;
 import alex.com.gdxdemo.testcode.SpringEffect;
-import alex.com.gdxdemo.testcode.utils;
 import de.greenrobot.event.EventBus;
 
 
@@ -47,6 +42,9 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 	private SystemReceiveBroadCast m_systemreceiveBroadCast;
 
 	ArrayList<float[]> mRandomColors = new ArrayList<>();
+
+
+	ArrayList<String> mRandomPng = new ArrayList<>();
 
 	public static void launch(Context context) {
 		Intent intent = new Intent();
@@ -68,7 +66,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 
 		initRandomColors();
 
-        setAssetes();
+//        setAssetes();
 
         m_libgdxFgm = (BalloonParticleFragment) getSupportFragmentManager().findFragmentById(R.id.libgdxFrag);
 
@@ -76,10 +74,12 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
         m_tvLog = (TextView) findViewById(R.id.log);
 
 	    mLikeBtn = (Button) findViewById(R.id.addballoon);
-	    mLikeBtn.setOnClickListener(new View.OnClickListener() {
+	    final float[] no = {-1f,-1f,-1f};
+
+	    SpringEffect.doEffectSticky(findViewById(R.id.addballoon), new Runnable() {
 		    @Override
-		    public void onClick(View v) {
-			    m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, getHeartBalloon(), 1000, mRandomColors.get(0), true);
+		    public void run() {
+			    m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, "balloon/1.png", 1000, no, true);
 		    }
 	    });
 
@@ -109,10 +109,11 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 		public void run() {
 			if (isdestoryed)
 				return;
-			int index = (int)(Math.random() * 3 + 1);
-			float[] randomColor = mRandomColors.get( (int)(Math.random()*mRandomColors.size()) );
-			m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, getHeartBalloon(), 1000, randomColor, false);
-			m_weakHandler.postDelayed(m_bigRunnable, 250);
+
+//			float[] randomColor = mRandomColors.get( (int)(Math.random()*(mRandomColors.size()) ) );
+			float[] no = {-1f,-1f,-1f};
+			m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, getHeartBalloon(), 1000, no, false);
+			m_weakHandler.postDelayed(m_bigRunnable, 100);
 		}
 	}
 
@@ -180,52 +181,49 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
         builder.create().show();
     }
 
-    private void setAssetes(){
-        File sd= Environment.getExternalStorageDirectory();
-        String path=sd.getPath()+"/libgdxDemo";
-        File file=new File(path);
-        if(!file.exists()) {
-            file.mkdir();
-        }
-
-	    File fileheart=new File(path + "/balloon/heart.png");
-	    if(!fileheart.exists()) {
-		    utils.copy("balloon/heart.png", path + "/balloon/heart.png");
-	    }
-
-    }
+//    private void setAssetes(){
+//        File sd= Environment.getExternalStorageDirectory();
+//        String path=sd.getPath()+"/libgdxDemo";
+//        File file=new File(path);
+//        if(!file.exists()) {
+//            file.mkdir();
+//        }
+//    }
 
     private String getHeartBalloon(){
 
-        final  String externalPath = "libgdxDemo";
 
-        if (!GiftParticleEffectView.fileIsExist(externalPath))
-        {
-            dialog("图片资源文件不存在或者路径不正确，请查看测试代码:" + utils.getLineInfo());
-        }
+	    int index = (int)(Math.random() * 5 + 1);
+//	    Log.d("test", "index:"+index );
+
+        final  String externalPath = "balloon/"+index+".png";
+
+//        if (!GiftParticleEffectView.fileIsExist(externalPath))
+//        {
+//            dialog("图片资源文件不存在或者路径不正确，请查看测试代码:" + utils.getLineInfo());
+//        }
 
         return externalPath;
     }
 
 	private void initRandomColors(){
-		float[] colorForestGreen = {34f/255f, 139f/255f, 34f/255f};
+		float[] colorForestGreen = {108/255f, 225/255f, 249/255f};
 		mRandomColors.add(colorForestGreen);
 
-		float[] colorGoldenrod = {255f/255f, 193f/255f, 37f/255f};
+		float[] colorGoldenrod = {224/255f, 253/255f, 96/255f};
 		mRandomColors.add(colorGoldenrod);
 
-		float[] colorDarkGoldenrod = {139f/255f, 101f/255f, 8f/255f};
+		float[] colorDarkGoldenrod = {163/255f, 146/255f, 247/255f};
 		mRandomColors.add(colorDarkGoldenrod);
 
-		float[] colorBlueViolet = {138f/255f, 42f/255f, 226f/255f};
-		mRandomColors.add(colorBlueViolet);
-
-		float[] colorSteelBlue1 = {99f/255f, 184f/255f, 255f/255f};
+		float[] colorSteelBlue1 = {254/255f, 210/255f, 112/255f};
 		mRandomColors.add(colorSteelBlue1);
 
-		float[] colorMaroon2 = {238f/255f, 48f/255f, 167f/255f};
-		mRandomColors.add(colorMaroon2);
+		float[] colorBlueViolet = {253/255f, 157/255f, 247/255f};
+		mRandomColors.add(colorBlueViolet);
+
 	}
+
 
 	private int mOtherLikeCounter = 0;
 	public void onEventMainThread(BalloonParticleEvents.BalloonParticleLifeCircleBegin event) {

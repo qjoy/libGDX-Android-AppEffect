@@ -234,8 +234,8 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		//创建粒子系统
 
 		if (Gdx.files.internal(particleFileName).exists()) {
-			if (Gdx.files.external(extentPath).exists())
-				mParticle.load(Gdx.files.internal(particleFileName), Gdx.files.external(extentPath));
+			if (Gdx.files.internal(extentPath).exists())
+				mParticle.load(Gdx.files.internal(particleFileName), Gdx.files.internal(extentPath));
 		} else
 			Log.e(TAG, "storePath is not exists:" + extentPath);
 
@@ -253,8 +253,8 @@ public class BalloonParticleEffectView implements ApplicationListener {
 			randomX = (int) (Math.random() * 20) + (Gdx.graphics.getWidth() / 2);
 			randomY = 100;
 		} else {
-			randomX = (int) (Math.random() * 20) + (Gdx.graphics.getWidth() / 2);
-			randomY =  100;
+			randomX = Gdx.graphics.getWidth() - 120 - (int) (Math.random() * 20);
+			randomY =  -30;
 		}
 
 		particleTmp.setPosition(randomX, randomY);
@@ -264,7 +264,8 @@ public class BalloonParticleEffectView implements ApplicationListener {
 
 		particleTmp.setDuration(duration);
 
-		setColor(particleTmp, R, G, B);
+		if (R>=0 && G>=0 && B>= 0)
+			setColor(particleTmp, R, G, B);
 
 		particleInfo.particle = particleTmp;
 

@@ -2,14 +2,14 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/floralwhite"
+                android:background="@color/word_dark"
                 tools:context=".GiftParticleEffectActivity">
 
     <fragment
         android:id="@+id/libgdxFrag"
         android:name="alex.com.gdxdemo.balloonparticlewidget.BalloonParticleFragment"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

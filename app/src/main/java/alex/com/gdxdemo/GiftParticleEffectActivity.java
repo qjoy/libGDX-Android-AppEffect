@@ -6,16 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.widget.MediaController;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import com.badoo.mobile.util.WeakHandler;
@@ -152,15 +149,15 @@ public class GiftParticleEffectActivity extends FragmentActivity implements Andr
 	        }
         });
 
-	    VideoView videoView = (VideoView) findViewById(R.id.videoview);
-	    /**
-	     * VideoView控制视频播放的功能相对较少，具体而言，它只有start和pause方法。为了提供更多的控制，
-	     * 可以实例化一个MediaController，并通过setMediaController方法把它设置为VideoView的控制器。
-	     */
-	    videoView.setMediaController(new MediaController(this));
-	    Uri uri = Uri.parse("http://7xox5k.com1.z0.glb.clouddn.com/box2d-demo-total.mp4");
-	    videoView.setVideoURI(uri);
-	    videoView.start();
+//	    VideoView videoView = (VideoView) findViewById(R.id.videoview);
+//	    /**
+//	     * VideoView控制视频播放的功能相对较少，具体而言，它只有start和pause方法。为了提供更多的控制，
+//	     * 可以实例化一个MediaController，并通过setMediaController方法把它设置为VideoView的控制器。
+//	     */
+//	    videoView.setMediaController(new MediaController(this));
+//	    Uri uri = Uri.parse("http://7xox5k.com1.z0.glb.clouddn.com/box2d-demo-total.mp4");
+//	    videoView.setVideoURI(uri);
+//	    videoView.start();
     }
 
     private class SmallRunnable implements Runnable{
@@ -301,7 +298,7 @@ public class GiftParticleEffectActivity extends FragmentActivity implements Andr
 
     private void setAssetes(){
         File sd= Environment.getExternalStorageDirectory();
-        String path=sd.getPath()+"/libgdxDemo";
+        String path=sd.getPath()+"/libgdxDemo/gifts";
         File file=new File(path);
         if(!file.exists()) {
             file.mkdir();
@@ -320,7 +317,7 @@ public class GiftParticleEffectActivity extends FragmentActivity implements Andr
         String index = String.valueOf((int)(Math.random() * 23)+1);
         Log.d("MainActivity", "gift index:"+index);
 
-        final  String externalPath = "libgdxDemo" + File.separator + GiftParticleContants.GIFT_BASE + index;
+        final  String externalPath = "libgdxDemo/gifts" + File.separator + GiftParticleContants.GIFT_BASE + index;
 
         if (!GiftParticleEffectView.fileIsExist(externalPath))
         {

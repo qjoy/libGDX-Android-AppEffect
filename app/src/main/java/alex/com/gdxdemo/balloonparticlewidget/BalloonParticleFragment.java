@@ -68,16 +68,7 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 			    isLand,
 			    rgb,
 			    isSelf);
-
-//	    m_WeakHandler.postDelayed(new Runnable() {
-//		    @Override
-//		    public void run() {
-//			    Intent intent = new Intent();
-//			    intent.setAction(GiftParticleContants.BROADCAST_PARTICLE_OVER);
-//			    if (getActivity() != null)
-//			        getActivity().sendBroadcast(intent);
-//		    }
-//	    }, 4000);
+	    
 
 	    particleEffectView.setOnStateListener(new BalloonParticleEffectView.OnStateListener() {
 		    @Override
