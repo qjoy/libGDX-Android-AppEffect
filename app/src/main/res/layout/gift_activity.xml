@@ -5,13 +5,6 @@
                 android:background="@color/floralwhite"
                 tools:context=".GiftParticleEffectActivity">
 
-    <fragment
-        android:id="@+id/libgdxFrag"
-        android:name="alex.com.gdxdemo.giftparticlewidget.GiftParticleFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
 	<!--<VideoView-->
 		<!--android:id="@+id/videoview"-->
 		<!--android:layout_width="match_parent"-->
@@ -210,6 +203,11 @@
         </LinearLayout>
     </LinearLayout>
 
-
+	<fragment
+		android:id="@+id/libgdxFrag"
+		android:name="alex.com.gdxdemo.giftparticlewidget.GiftParticleFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		/>
 
 </RelativeLayout>

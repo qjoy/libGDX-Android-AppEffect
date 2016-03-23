@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -26,6 +25,7 @@ import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import com.badoo.mobile.util.WeakHandler;
 
 import alex.com.gdxdemo.R;
+import alex.com.gdxdemo.base.InterceptableViewGroup;
 import alex.com.gdxdemo.giftparticlewidget.GiftParticleContants;
 import de.greenrobot.event.EventBus;
 
@@ -39,7 +39,7 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
     private static final String TAG = "BalloonParticleFragment";
     private View m_viewRooter = null;
     //粒子效果UI容器层
-    private LinearLayout mContainer;
+    private InterceptableViewGroup mContainer;
     //粒子效果绘制层
     private BalloonParticleEffectView particleEffectView;
     //Fragment 处于销毁过程中标志位
@@ -119,8 +119,9 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 
         particleEffectView = new BalloonParticleEffectView();
         View effectview = CreateGLAlpha(particleEffectView);
-        mContainer = (LinearLayout) m_viewRooter.findViewById(R.id.container);
+        mContainer = (InterceptableViewGroup) m_viewRooter.findViewById(R.id.container);
         mContainer.addView(effectview);
+	    mContainer.setIntercept(true);
         Gdx.input.setInputProcessor(this);
         Gdx.input.setCatchBackKey(true);
     }

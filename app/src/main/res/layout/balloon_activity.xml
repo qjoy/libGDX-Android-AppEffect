@@ -5,18 +5,10 @@
                 android:background="@color/word_dark"
                 tools:context=".GiftParticleEffectActivity">
 
-    <fragment
-        android:id="@+id/libgdxFrag"
-        android:name="alex.com.gdxdemo.balloonparticlewidget.BalloonParticleFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        />
 
 
-    <ScrollView
+
+	<ScrollView
         android:id="@+id/scrollv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -71,5 +63,15 @@
 			android:textSize="12dp"
 			/>
 	</LinearLayout>
+
+	<fragment
+		android:id="@+id/libgdxFrag"
+		android:name="alex.com.gdxdemo.balloonparticlewidget.BalloonParticleFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginBottom="70dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		/>
 
 </RelativeLayout>
