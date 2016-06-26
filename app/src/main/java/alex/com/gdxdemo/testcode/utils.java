@@ -59,5 +59,17 @@ public class utils {
 			}
 		}
 	}
+
+	public static int DpToPx(float x) {
+		int result = 0;
+		final float scale = MyApplication.getInstance().getResources().getDisplayMetrics().density;
+		result = (int) (x * scale + 0.5f);
+		return result;
+	}
+
+	public static int PxToDp(int x) {
+		final float scale = MyApplication.getInstance().getResources().getDisplayMetrics().density;
+		return (int) (x / scale + 0.5f);
+	}
 }
 

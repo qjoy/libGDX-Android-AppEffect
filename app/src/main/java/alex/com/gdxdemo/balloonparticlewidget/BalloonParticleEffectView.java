@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import alex.com.gdxdemo.testcode.utils;
+
 /**
  * Created by alex_xq on 14/11/2.
  */
@@ -232,12 +234,38 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		String particleFileName = "heartballoon.p";
 
 		//创建粒子系统
+		//放大系数
+		float scale_lowMin = utils.DpToPx(0);
+		float scale_lowMax = utils.DpToPx(0);
+		float scale_highMin = utils.DpToPx(43);
+		float scale_highMax = utils.DpToPx(48);
+		//移动系数
+		float move_lowMin = utils.DpToPx(15);
+		float move_lowMax = utils.DpToPx(25);
+		float move_highMin = utils.DpToPx(95);
+		float move_highMax = utils.DpToPx(125);
 
 		if (Gdx.files.internal(particleFileName).exists()) {
 			if (Gdx.files.internal(extentPath).exists())
 				mParticle.load(Gdx.files.internal(particleFileName), Gdx.files.internal(extentPath));
 		} else
 			Log.e(TAG, "storePath is not exists:" + extentPath);
+
+		try{
+			mParticle.getEmitters().get(0).getScale().setLow(scale_lowMin, scale_lowMax);
+			mParticle.getEmitters().get(0).getScale().setHigh(scale_highMin, scale_highMax);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+
+		try {
+			mParticle.getEmitters().get(0).getVelocity().setLow(move_lowMin, move_lowMax);
+			mParticle.getEmitters().get(0).getVelocity().setHigh(move_highMin, move_highMax);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 
 
 		if (mParticleEffectPool == null)
