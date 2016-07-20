@@ -101,7 +101,9 @@
     <orderEntry type="library" exported="" name="appcompat-v7-22.1.1" level="project" />
     <orderEntry type="library" exported="" name="gdx-backend-android" level="project" />
     <orderEntry type="library" exported="" name="gdx-natives" level="project" />
+    <orderEntry type="library" exported="" name="gdx-box2d" level="project" />
     <orderEntry type="library" exported="" name="android-weak-handler-1.0" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
     <orderEntry type="library" exported="" name="eventbus-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="rebound-0.3.6" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />

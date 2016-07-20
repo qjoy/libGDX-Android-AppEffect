@@ -298,13 +298,13 @@ public class GiftParticleEffectActivity extends FragmentActivity implements Andr
 
     private void setAssetes(){
         File sd= Environment.getExternalStorageDirectory();
-        String path=sd.getPath()+"/libgdxDemo/gifts";
+        String path=sd.getPath()+"/libgdxDemo/particle.gifts";
         File file=new File(path);
         if(!file.exists()) {
             file.mkdir();
             for (int i=1; i<24;i++){
                 String filename = "/"+i;
-                utils.copy("gifts"+filename, path + filename);
+                utils.copy("particle/gifts" +filename, path + filename);
             }
         }
         else{
@@ -317,7 +317,7 @@ public class GiftParticleEffectActivity extends FragmentActivity implements Andr
         String index = String.valueOf((int)(Math.random() * 23)+1);
         Log.d("MainActivity", "gift index:"+index);
 
-        final  String externalPath = "libgdxDemo/gifts" + File.separator + GiftParticleContants.GIFT_BASE + index;
+        final  String externalPath = "libgdxDemo/particle.gifts" + File.separator + GiftParticleContants.GIFT_BASE + index;
 
         if (!GiftParticleEffectView.fileIsExist(externalPath))
         {

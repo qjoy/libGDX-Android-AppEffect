@@ -157,7 +157,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 //		动态加入需要展示的粒子效果
 		dataLogicGet();
 
-
+		mBatch.begin();
 //		粒子效果绘制
 		for (int i = 0; i < mParticles.size(); i++) {
 
@@ -184,6 +184,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 				onStateListener.OnFinish(particleInfo.animationType);
 			}
 		}
+		mBatch.end();
 
 
 	}
@@ -240,9 +241,9 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 		String particleFileName = "";
 		if (particleType == ParticleType.PARTICLE_TYPE_FIRE) {
-			particleFileName = "firebomb.p";
+			particleFileName = "particle/firebomb.p";
 		} else if (particleType == ParticleType.PARTICLE_TYPE_WATER) {
-			particleFileName = "waterfall.p";
+			particleFileName = "particle/waterfall.p";
 		}
 
 		//创建粒子系统
@@ -314,25 +315,25 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (type == ParticleAnimationType.ANIMATION_TYPE_BOX1) {
 
 			for (int i = 0; i <= 12; i++) {
-				mAssetManager.load("boxone/frame" + i + ".png", Texture.class);
+				mAssetManager.load("particle/boxone/frame" + i + ".png", Texture.class);
 			}
 
 		} else if (type == ParticleAnimationType.ANIMATION_TYPE_BOX2) {
 
 			for (int i = 0; i <= 12; i++) {
-				mAssetManager.load("boxtwo/frame" + i + ".png", Texture.class);
+				mAssetManager.load("particle/boxtwo/frame" + i + ".png", Texture.class);
 			}
 
 		} else if (type == ParticleAnimationType.ANIMATION_TYPE_BOX3) {
 
 			for (int i = 0; i <= 12; i++) {
-				mAssetManager.load("boxthree/frame" + i + ".png", Texture.class);
+				mAssetManager.load("particle/boxthree/frame" + i + ".png", Texture.class);
 			}
 
 		} else if (type == ParticleAnimationType.ANIMATION_TYPE_BOX4) {
 
 			for (int i = 0; i <= 10; i++) {
-				mAssetManager.load("boxfour/frame" + i + ".png", Texture.class);
+				mAssetManager.load("particle/boxfour/frame" + i + ".png", Texture.class);
 			}
 
 		}
@@ -342,11 +343,9 @@ public class GiftParticleEffectView implements ApplicationListener {
 		boolean bres = false;
 		if (particleInfo.playstate == 0) {
 
-			mBatch.begin();
 
 			particleInfo.particle.draw(mBatch, Gdx.graphics.getDeltaTime());
 
-			mBatch.end();
 
 			//清除已经播放完成的粒子系统
 			if (particleInfo.particle.isComplete()) {
@@ -376,10 +375,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentTextureR = particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
-			mBatch.begin();
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
-
 			if (particleInfo.beginAnimation.isAnimationFinished(particleInfo.stateTime)) {
 
 				particleInfo.playstate = 1;
@@ -389,13 +385,13 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 1) {
 
 			TextureRegion lastTextureR = particleInfo.beginAnimTexList.get(particleInfo.beginAnimTexList.size - 1);
-			mBatch.begin();
-			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
 
-			mBatch.begin();
+			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
+
+
+
 			particleInfo.particle.draw(mBatch, Gdx.graphics.getDeltaTime());
-			mBatch.end();
+
 
 			//清除已经播放完成的粒子系统
 			if (particleInfo.particle.isComplete()) {
@@ -407,9 +403,9 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentTextureR = particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
-			mBatch.begin();
+
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
+
 
 			if (particleInfo.endAnimation.isAnimationFinished(particleInfo.stateTime)) {
 				particleInfo.playstate = 3;
@@ -442,9 +438,8 @@ public class GiftParticleEffectView implements ApplicationListener {
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentTextureR = particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
 
-			mBatch.begin();
+
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
 
 			if (particleInfo.beginAnimation.isAnimationFinished(particleInfo.stateTime)) {
 
@@ -455,13 +450,10 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 1) {
 
 			TextureRegion lastTextureR = particleInfo.beginAnimTexList.get(particleInfo.beginAnimTexList.size - 1);
-			mBatch.begin();
-			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
 
-			mBatch.begin();
+			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
+
 			particleInfo.particle.draw(mBatch, Gdx.graphics.getDeltaTime());
-			mBatch.end();
 
 			//清除已经播放完成的粒子系统
 			if (particleInfo.particle.isComplete()) {
@@ -472,9 +464,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 2) {
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentTextureR = particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
-			mBatch.begin();
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
 
 			if (particleInfo.endAnimation.isAnimationFinished(particleInfo.stateTime)) {
 				particleInfo.playstate = 3;
@@ -482,9 +472,8 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 3) {
 
 //			TextureRegion lastTextureR = particleInfo.beginAnimTexList.get(particleInfo.beginAnimTexList.size - 1);
-//			mBatch.begin();
 //			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-//			mBatch.end();
+
 
 			particleInfo.playstate = 4;
 			bres = true;
@@ -509,9 +498,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentTextureR = particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
-			mBatch.begin();
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
 
 			if (particleInfo.beginAnimation.isAnimationFinished(particleInfo.stateTime)) {
 				particleInfo.playstate = 1;
@@ -521,14 +508,9 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 1) {
 
 			TextureRegion lastTextureR = particleInfo.beginAnimTexList.get(particleInfo.beginAnimTexList.size - 1);
-			mBatch.begin();
 			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
-
-			mBatch.begin();
 
 			particleInfo.particle.draw(mBatch, Gdx.graphics.getDeltaTime());
-			mBatch.end();
 
 			//清除已经播放完成的粒子系统
 			if (particleInfo.particle.isComplete()) {
@@ -539,19 +521,14 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 2) {
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentTextureR = particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
-			mBatch.begin();
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-			mBatch.end();
-
 			if (particleInfo.endAnimation.isAnimationFinished(particleInfo.stateTime)) {
 				particleInfo.playstate = 3;
 			}
 		} else if (particleInfo.playstate == 3) {
 
 //			TextureRegion lastTextureR = particleInfo.beginAnimTexList.get(particleInfo.beginAnimTexList.size - 1);
-//			mBatch.begin();
 //			mBatch.draw(lastTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
-//			mBatch.end();
 
 			particleInfo.playstate = 4;
 			bres = true;
@@ -564,49 +541,49 @@ public class GiftParticleEffectView implements ApplicationListener {
 
 		if (particleInfo.animationType == ParticleAnimationType.ANIMATION_TYPE_BOX1) {
 			for (int i = 0; i <= 5; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxone/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxone/frame" + i + ".png", Texture.class));
 				particleInfo.beginAnimTexList.add(temtex);
 			}
 			particleInfo.beginAnimation = new Animation(0.1f, particleInfo.beginAnimTexList);
 
 			for (int i = 5; i <= 12; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxone/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxone/frame" + i + ".png", Texture.class));
 				particleInfo.endAnimTexList.add(temtex);
 			}
 			particleInfo.endAnimation = new Animation(0.08f, particleInfo.endAnimTexList);
 		} else if (particleInfo.animationType == ParticleAnimationType.ANIMATION_TYPE_BOX2) {
 			for (int i = 0; i <= 5; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxtwo/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxtwo/frame" + i + ".png", Texture.class));
 				particleInfo.beginAnimTexList.add(temtex);
 			}
 			particleInfo.beginAnimation = new Animation(0.1f, particleInfo.beginAnimTexList);
 
 			for (int i = 5; i <= 12; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxtwo/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxtwo/frame" + i + ".png", Texture.class));
 				particleInfo.endAnimTexList.add(temtex);
 			}
 			particleInfo.endAnimation = new Animation(0.08f, particleInfo.endAnimTexList);
 		} else if (particleInfo.animationType == ParticleAnimationType.ANIMATION_TYPE_BOX3) {
 			for (int i = 0; i <= 6; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxthree/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxthree/frame" + i + ".png", Texture.class));
 				particleInfo.beginAnimTexList.add(temtex);
 			}
 			particleInfo.beginAnimation = new Animation(0.1f, particleInfo.beginAnimTexList);
 
 			for (int i = 6; i <= 12; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxthree/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxthree/frame" + i + ".png", Texture.class));
 				particleInfo.endAnimTexList.add(temtex);
 			}
 			particleInfo.endAnimation = new Animation(0.08f, particleInfo.endAnimTexList);
 		} else if (particleInfo.animationType == ParticleAnimationType.ANIMATION_TYPE_BOX4) {
 			for (int i = 0; i <= 6; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxfour/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxfour/frame" + i + ".png", Texture.class));
 				particleInfo.beginAnimTexList.add(temtex);
 			}
 			particleInfo.beginAnimation = new Animation(0.1f, particleInfo.beginAnimTexList);
 
 			for (int i = 6; i <= 10; i++) {
-				TextureRegion temtex = new TextureRegion(mAssetManager.get("boxfour/frame" + i + ".png", Texture.class));
+				TextureRegion temtex = new TextureRegion(mAssetManager.get("particle/boxfour/frame" + i + ".png", Texture.class));
 				particleInfo.endAnimTexList.add(temtex);
 			}
 			particleInfo.endAnimation = new Animation(0.08f, particleInfo.endAnimTexList);

@@ -27,7 +27,7 @@
             <Button
                 android:id="@+id/gift"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/testbtnsharp"
@@ -39,7 +39,7 @@
             <Button
                 android:id="@+id/balloon"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/testbtnsharp"
@@ -47,6 +47,18 @@
                 android:textColor="@color/word_dark"
                 android:textSize="14dp"
                 />
+
+	        <Button
+		        android:id="@+id/box2d"
+		        android:layout_width="match_parent"
+		        android:layout_height="80dp"
+		        android:layout_margin="5dp"
+		        android:layout_weight="1"
+		        android:background="@drawable/testbtnsharp"
+		        android:text="Box2D Activity"
+		        android:textColor="@color/word_dark"
+		        android:textSize="14dp"
+	        />
 
         </LinearLayout>
     </LinearLayout>

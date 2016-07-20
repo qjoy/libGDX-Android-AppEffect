@@ -79,7 +79,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 	    SpringEffect.doEffectSticky(findViewById(R.id.addballoon), new Runnable() {
 		    @Override
 		    public void run() {
-			    m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, "balloon/1.png", 1000, no, true);
+			    m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, "particle/balloon/1.png", 1000, no, true);
 		    }
 	    });
 
@@ -196,7 +196,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 	    int index = (int)(Math.random() * 5 + 1);
 //	    Log.d("test", "index:"+index );
 
-        final  String externalPath = "balloon/"+index+".png";
+        final  String externalPath = "particle/balloon/" +index+".png";
 
 //        if (!GiftParticleEffectView.fileIsExist(externalPath))
 //        {

@@ -31,6 +31,13 @@ public class MainActivity extends Activity {
 				BalloonParticleEffectActivity.launch(MainActivity.this);
 			}
 		});
+
+		SpringEffect.doEffectSticky(findViewById(R.id.box2d), new Runnable() {
+			@Override
+			public void run() {
+				Box2dActivity.launch(MainActivity.this);
+			}
+		});
 	}
 
 }

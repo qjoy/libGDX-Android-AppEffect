@@ -101,9 +101,9 @@ public class BalloonParticleEffectView implements ApplicationListener {
 
 		mBatch = new SpriteBatch();
 
-		mParticle = new ParticleEffect();
-
 		mWidth = Gdx.graphics.getWidth() > Gdx.graphics.getHeight() ? Gdx.graphics.getHeight() : Gdx.graphics.getWidth();
+
+		balloonParticleInit();
 	}
 
 	@Override
@@ -158,6 +158,7 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		dataLogicGet();
 
 
+		mBatch.begin();
 //		粒子效果绘制
 		for (int i = 0; i < mParticles.size(); i++) {
 
@@ -175,7 +176,7 @@ public class BalloonParticleEffectView implements ApplicationListener {
 				onStateListener.OnFinish(particleInfo.isSelf);
 			}
 		}
-
+		mBatch.end();
 
 	}
 
@@ -231,7 +232,7 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		particleInfo.isSelf = isSelf;
 //		particleInfo.duration = duration;
 
-		String particleFileName = "heartballoon.p";
+		String particleFileName = "particle/heartballoon.p";
 
 		//创建粒子系统
 		//放大系数
@@ -245,11 +246,10 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		float move_highMin = utils.DpToPx(95);
 		float move_highMax = utils.DpToPx(125);
 
-		if (Gdx.files.internal(particleFileName).exists()) {
-			if (Gdx.files.internal(extentPath).exists())
-				mParticle.load(Gdx.files.internal(particleFileName), Gdx.files.internal(extentPath));
-		} else
-			Log.e(TAG, "storePath is not exists:" + extentPath);
+		if (Gdx.files.internal(extentPath).exists())
+			mParticle.loadEmitterImages( Gdx.files.internal(extentPath));
+		else
+			Log.e(TAG, "filePath is not exists:" + extentPath);
 
 		try{
 			mParticle.getEmitters().get(0).getScale().setLow(scale_lowMin, scale_lowMax);
@@ -318,11 +318,7 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		boolean bres = false;
 		if (particleInfo.playstate == 0) {
 
-			mBatch.begin();
-
 			particleInfo.particle.draw(mBatch, Gdx.graphics.getDeltaTime());
-
-			mBatch.end();
 
 			//清除已经播放完成的粒子系统
 			if (particleInfo.particle.isComplete()) {
@@ -352,4 +348,11 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		}
 	}
 
+	private void balloonParticleInit(){
+		mParticle = new ParticleEffect();
+
+		String particleFileName = "particle/heartballoon.p";
+		if ( Gdx.files.internal(particleFileName).exists())
+			mParticle.load(Gdx.files.internal(particleFileName), Gdx.files.internal("particle/balloon/1.png"));
+	}
 }
