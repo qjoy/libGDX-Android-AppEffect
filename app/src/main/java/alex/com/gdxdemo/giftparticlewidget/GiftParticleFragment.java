@@ -51,7 +51,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
 
     public void PlayAdd(int pathtype, String pathstring, int paticletype, int dur) {
 
-        if (m_isStoping && !isScreenLock())
+        if (m_isStoping || isScreenLock())
             return;
 
         if (pathstring == null)

@@ -53,7 +53,7 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 
     public void PlayAdd(int pathtype, String pathstring, int dur, float[] rgb, final boolean isSelf) {
 
-        if (m_isStoping && !isScreenLock())
+        if (m_isStoping || isScreenLock())
             return;
 
         if (pathstring == null)
