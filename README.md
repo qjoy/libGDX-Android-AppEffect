@@ -7,11 +7,10 @@
 
 我们关注如何结合Android原生APP开发，使用libGDX帮助我们实现高效的特效动画。
 
----|---|---
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/Untitled.gif" width="120x">|
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/box2d-demo-total.gif" width="120x">|
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/balloon.gif" width="120x">|
-<img src="http://7xox5k.com1.z0.glb.clouddn.com/box2dgift.gif" width="120x">
+[particle Demo video](http://v.youku.com/v_show/id_XMTQwOTIyMjIyOA==.html)
+
+[box2d Demo video](http://v.youku.com/v_show/id_XMTY1MDE4NzM4OA==.html)
+
 
 libGDX几篇文章总结一下：
 
