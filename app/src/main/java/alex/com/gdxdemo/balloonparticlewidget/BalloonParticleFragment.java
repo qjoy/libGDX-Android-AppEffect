@@ -88,6 +88,14 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 
     }
 
+	public void switchSound(boolean open)
+	{
+		if (particleEffectView != null)
+		{
+			particleEffectView.switchSound(open);
+		}
+	}
+
     public void preDestory(){
         m_isDestorying = true;
         m_isStoping = true;

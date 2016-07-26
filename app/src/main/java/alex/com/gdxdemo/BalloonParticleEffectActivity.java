@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 	private boolean m_bOpenCrazyMode = false;
 	private Button mLikeBtn;
 	private Button mRandomBtn;
+	private SwitchCompat mSoundSwitch;
 	private BigRunnable m_bigRunnable = new BigRunnable();
 
 	private SystemReceiveBroadCast m_systemreceiveBroadCast;
@@ -101,6 +104,22 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 	    });
 
 	    EventBus.getDefault().register(this);
+
+	    mSoundSwitch = (SwitchCompat) findViewById(R.id.swichSound);
+	    mSoundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		    @Override
+		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			    switch (buttonView.getId()) {
+				    case R.id.swichSound: {
+					    Log.i("swichSound", isChecked + "");
+					    if (m_libgdxFgm != null){
+						    m_libgdxFgm.switchSound(isChecked);
+					    }
+					    break;
+				    }
+			    }
+		    }
+	    });
     }
 
 	private class BigRunnable implements Runnable{
@@ -113,7 +132,8 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 //			float[] randomColor = mRandomColors.get( (int)(Math.random()*(mRandomColors.size()) ) );
 			float[] no = {-1f,-1f,-1f};
 			m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, getHeartBalloon(), 1000, no, false);
-			m_weakHandler.postDelayed(m_bigRunnable, 100);
+			int dif = (int) ((float)Math.random()*200f+150f);
+			m_weakHandler.postDelayed(m_bigRunnable, dif);
 		}
 	}
 

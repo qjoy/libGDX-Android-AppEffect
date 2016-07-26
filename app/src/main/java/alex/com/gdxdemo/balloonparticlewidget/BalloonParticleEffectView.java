@@ -5,6 +5,7 @@ import android.util.Log;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -45,7 +46,12 @@ public class BalloonParticleEffectView implements ApplicationListener {
 
 	private boolean m_candraw = true;
 
+	private boolean m_soundOpen = false;
+
 //	Object mLockRenderOpt = new Object();
+
+	private List<Sound> m_listWaterPopSounds = new ArrayList<>();
+
 
 
 	class ParticleInfo {
@@ -96,6 +102,10 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		forceOver = true;
 	}
 
+	public void switchSound(boolean open){
+		m_soundOpen = open;
+	}
+
 	@Override
 	public void create() {
 
@@ -104,6 +114,8 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		mWidth = Gdx.graphics.getWidth() > Gdx.graphics.getHeight() ? Gdx.graphics.getHeight() : Gdx.graphics.getWidth();
 
 		balloonParticleInit();
+
+		soundInit();
 	}
 
 	@Override
@@ -290,6 +302,11 @@ public class BalloonParticleEffectView implements ApplicationListener {
 
 		onStateListener.OnBegin(particleInfo.isSelf);
 
+		int randomSoundIndex = (int)((float)Math.random()*10);
+		randomSoundIndex = randomSoundIndex>6?1:0;
+		if (m_soundOpen)
+			m_listWaterPopSounds.get(randomSoundIndex).play();
+
 		particleTmp.setDuration(duration);
 
 		if (R>=0 && G>=0 && B>= 0)
@@ -354,5 +371,12 @@ public class BalloonParticleEffectView implements ApplicationListener {
 		String particleFileName = "particle/heartballoon.p";
 		if ( Gdx.files.internal(particleFileName).exists())
 			mParticle.load(Gdx.files.internal(particleFileName), Gdx.files.internal("particle/balloon/1.png"));
+	}
+
+	private void soundInit(){
+		Sound waterPop1 = Gdx.audio.newSound(Gdx.files.internal("audio/waterpop/waterpop.wav"));
+		Sound waterPop2 = Gdx.audio.newSound(Gdx.files.internal("audio/waterpop/waterpop2.wav"));
+		m_listWaterPopSounds.add(waterPop1);
+		m_listWaterPopSounds.add(waterPop2);
 	}
 }
