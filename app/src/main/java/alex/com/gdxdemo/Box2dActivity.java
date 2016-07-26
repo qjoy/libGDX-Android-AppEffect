@@ -293,4 +293,10 @@ public class Box2dActivity extends FragmentActivity implements AndroidFragmentAp
 		params.height = height;
 		m_container.setLayoutParams(params);
 	}
+
+	@Override
+	public void finish() {
+		m_box2dFgm.preDestory();
+		super.finish();
+	}
 }

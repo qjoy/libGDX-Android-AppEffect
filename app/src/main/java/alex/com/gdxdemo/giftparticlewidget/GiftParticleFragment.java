@@ -148,6 +148,7 @@ public class GiftParticleFragment extends AndroidFragmentApplication implements 
     public void preDestory(){
         m_isDestorying = true;
         m_isStoping = true;
+	    particleEffectView.setCanDraw(false);
     }
 
     @Nullable

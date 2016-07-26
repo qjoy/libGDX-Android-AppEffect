@@ -2,6 +2,7 @@ package alex.com.gdxdemo.gift2dview;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -14,7 +15,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -72,6 +77,9 @@ public class Box2dEffectView implements ApplicationListener {
         m_spriteBatch = new SpriteBatch();
 
         world = new World(new Vector2(0f, -60f), true);
+
+	    world.setContactListener(new MyContactListener());
+
         addground();
         addleftwall();
         addrighttwall();
@@ -353,4 +361,32 @@ public class Box2dEffectView implements ApplicationListener {
     public void openDebugRenderer(boolean debugRenderer) {
         m_isDebugRenderer = debugRenderer;
     }
+
+	class MyContactListener implements ContactListener{
+
+		@Override
+		public void beginContact(Contact contact) {
+
+			BallInfo ballInfoA = (BallInfo)contact.getFixtureA().getBody().getUserData();
+			BallInfo ballInfoB = (BallInfo)contact.getFixtureB().getBody().getUserData();
+			if (ballInfoA != null && ballInfoB != null){
+				Log.d(TAG, "beginContact");
+			}
+		}
+
+		@Override
+		public void endContact(Contact contact) {
+
+		}
+
+		@Override
+		public void preSolve(Contact contact, Manifold manifold) {
+
+		}
+
+		@Override
+		public void postSolve(Contact contact, ContactImpulse contactImpulse) {
+
+		}
+	}
 }

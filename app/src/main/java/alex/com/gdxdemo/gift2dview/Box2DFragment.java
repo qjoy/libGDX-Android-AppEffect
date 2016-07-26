@@ -60,6 +60,7 @@ public class Box2DFragment extends AndroidFragmentApplication implements InputPr
 
 	public void preDestory() {
 		m_isDestorying = true;
+		box2dEffectView.setCanDraw(false);
 	}
 
 	@Nullable

@@ -37,4 +37,5 @@ dependencies {
     compile files('libs/gdx-natives.jar')
     compile files('libs/gdx-box2d.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile files('libs/gdxlite.jar')
 }

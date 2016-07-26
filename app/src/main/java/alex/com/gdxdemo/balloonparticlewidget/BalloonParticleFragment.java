@@ -99,6 +99,7 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
     public void preDestory(){
         m_isDestorying = true;
         m_isStoping = true;
+	    particleEffectView.setCanDraw(false);
     }
 
     @Nullable
