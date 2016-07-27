@@ -1,6 +1,6 @@
 **by AlexQ （[email](alexq_andr@163.com) alexq_andr@163.com）**
 
-![image](https://libgdx.badlogicgames.com/img/logo.png)
+![image](http://7xox5k.com1.z0.glb.clouddn.com/15-12-5/13896084.jpg)
 
 
 `What's libGDX?
