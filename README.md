@@ -8,6 +8,8 @@ libGDX is a cross-platform Java game development framework based on OpenGL (ES) 
 
 我们关注如何结合Android原生APP开发，使用libGDX帮助我们实现高效的特效动画。
 
+![](http://7xox5k.com1.z0.glb.clouddn.com/libgdxdemo.png)
+
 [particle Demo video](http://v.youku.com/v_show/id_XMTQwOTIyMjIyOA==.html)
 
 [box2d Demo video](http://v.youku.com/v_show/id_XMTY1MDE4NzM4OA==.html)
