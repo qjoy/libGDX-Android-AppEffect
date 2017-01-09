@@ -36,7 +36,17 @@
                 android:textSize="14dp"
                 />
 
-
+	        <Button
+		        android:id="@+id/balloon"
+		        android:layout_width="match_parent"
+		        android:layout_height="80dp"
+		        android:layout_margin="10dp"
+		        android:layout_weight="1"
+		        android:background="@drawable/testbtnsharp"
+		        android:text="Balloon Particle Activity"
+		        android:textColor="@color/word_dark"
+		        android:textSize="14dp"
+	        />
 
 	        <Button
 		        android:id="@+id/box2d"
@@ -53,17 +63,7 @@
         </LinearLayout>
     </LinearLayout>
 
-	<Button
-		android:id="@+id/balloon"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_margin="5dp"
-		android:layout_weight="1"
-		android:background="@drawable/testbtnsharp"
-		android:text="Balloon Particle Activity"
-		android:textColor="@color/word_dark"
-		android:textSize="14dp"
-	/>
+
 
 
 </RelativeLayout>

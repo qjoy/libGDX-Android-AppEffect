@@ -98,6 +98,9 @@ public class GiftParticleEffectView implements ApplicationListener {
 	@Override
 	public void create() {
 
+		if (mBatch != null)
+			return;
+
 		mBatch = new SpriteBatch();
 
 		mParticle = new ParticleEffect();
