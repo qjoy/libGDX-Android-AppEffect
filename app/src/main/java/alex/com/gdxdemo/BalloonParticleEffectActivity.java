@@ -120,6 +120,25 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 			    }
 		    }
 	    });
+
+	    int randomTime = (int)(Math.random()*600+100);
+
+	    m_weakHandler.postDelayed(new Runnable() {
+		    @Override
+		    public void run() {
+			    if (m_bOpenCrazyMode == false) {
+				    m_weakHandler.postDelayed(m_bigRunnable, 1);
+
+				    mRandomBtn.setText("close CrazyMode");
+			    } else {
+				    m_weakHandler.removeCallbacks(m_bigRunnable);
+				    mRandomBtn.setText("open CrazyMode");
+			    }
+
+			    m_bOpenCrazyMode = !m_bOpenCrazyMode;
+		    }
+	    }, randomTime);
+
     }
 
 	private class BigRunnable implements Runnable{

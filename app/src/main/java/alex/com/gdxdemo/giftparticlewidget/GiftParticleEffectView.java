@@ -374,7 +374,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 				initResource(particleInfo);
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
-			TextureRegion currentTextureR = particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
+			TextureRegion currentTextureR = (TextureRegion)particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
 			if (particleInfo.beginAnimation.isAnimationFinished(particleInfo.stateTime)) {
 
@@ -402,7 +402,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 		} else if (particleInfo.playstate == 2) {
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
-			TextureRegion currentTextureR = particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
+			TextureRegion currentTextureR = (TextureRegion)particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
 
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
 
@@ -436,7 +436,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 				initResource(particleInfo);
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
-			TextureRegion currentTextureR = particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
+			TextureRegion currentTextureR = (TextureRegion)particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
 
 
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
@@ -463,7 +463,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 			}
 		} else if (particleInfo.playstate == 2) {
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
-			TextureRegion currentTextureR = particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
+			TextureRegion currentTextureR = (TextureRegion)particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
 
 			if (particleInfo.endAnimation.isAnimationFinished(particleInfo.stateTime)) {
@@ -497,7 +497,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 				initResource(particleInfo);
 
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
-			TextureRegion currentTextureR = particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
+			TextureRegion currentTextureR = (TextureRegion)particleInfo.beginAnimation.getKeyFrame(particleInfo.stateTime, false);
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
 
 			if (particleInfo.beginAnimation.isAnimationFinished(particleInfo.stateTime)) {
@@ -520,7 +520,7 @@ public class GiftParticleEffectView implements ApplicationListener {
 			}
 		} else if (particleInfo.playstate == 2) {
 			particleInfo.stateTime += Gdx.graphics.getDeltaTime();
-			TextureRegion currentTextureR = particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
+			TextureRegion currentTextureR = (TextureRegion)particleInfo.endAnimation.getKeyFrame(particleInfo.stateTime, false);
 			mBatch.draw(currentTextureR, (Gdx.graphics.getWidth() - mWidth) / 2, yPos, mWidth, mWidth);
 			if (particleInfo.endAnimation.isAnimationFinished(particleInfo.stateTime)) {
 				particleInfo.playstate = 3;

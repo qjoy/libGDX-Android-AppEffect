@@ -27,15 +27,18 @@ android {
 }
 
 dependencies {
+
+    configurations { natives }
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.badoo.mobile:android-weak-handler:1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.facebook.rebound:rebound:0.3.6'
-    compile files('libs/gdx.jar')
-    compile files('libs/gdx-backend-android.jar')
-    compile files('libs/gdx-natives.jar')
-    compile files('libs/gdx-box2d.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile files('libs/gdxlite.jar')
+
+    compile "com.badlogicgames.gdx:gdx-backend-android:1.9.5"
+    natives "com.badlogicgames.gdx:gdx-platform:1.9.5:natives-armeabi-v7a"
+    compile "com.badlogicgames.gdx:gdx-box2d:1.9.5"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:1.9.5:natives-armeabi-v7a"
 }
