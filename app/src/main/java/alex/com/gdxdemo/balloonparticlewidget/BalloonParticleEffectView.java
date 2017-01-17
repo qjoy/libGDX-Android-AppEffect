@@ -246,17 +246,20 @@ public class BalloonParticleEffectView implements ApplicationListener {
 
 		String particleFileName = "particle/heartballoon.p";
 
+		boolean bScarce = (int)(Math.random()*10.0f) < 2;
+		int randomHighMin = bScarce ? 180 : 80;
+		int randomHighMax = bScarce ? 200 : 145;
 		//创建粒子系统
 		//放大系数
 		float scale_lowMin = utils.DpToPx(0);
 		float scale_lowMax = utils.DpToPx(0);
-		float scale_highMin = utils.DpToPx(43);
-		float scale_highMax = utils.DpToPx(48);
+		float scale_highMin = utils.DpToPx(26);
+		float scale_highMax = utils.DpToPx(28);
 		//移动系数
 		float move_lowMin = utils.DpToPx(15);
 		float move_lowMax = utils.DpToPx(25);
-		float move_highMin = utils.DpToPx(95);
-		float move_highMax = utils.DpToPx(125);
+		float move_highMin = utils.DpToPx(randomHighMin);
+		float move_highMax = utils.DpToPx(randomHighMax);
 
 		if (Gdx.files.internal(extentPath).exists())
 			mParticle.loadEmitterImages( Gdx.files.internal(extentPath));
