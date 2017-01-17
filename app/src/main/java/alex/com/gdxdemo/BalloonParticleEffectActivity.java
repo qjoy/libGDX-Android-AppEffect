@@ -232,7 +232,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
     private String getHeartBalloon(){
 
 
-	    int index = (int)(Math.random() * 6 + 2);
+	    int index = (int)(Math.random() * 15 + 2);
 //	    Log.d("test", "index:"+index );
 
         final  String externalPath = "particle/balloon/" +index+".png";
