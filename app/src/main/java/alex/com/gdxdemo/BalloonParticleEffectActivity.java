@@ -12,6 +12,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
     private ScrollView m_scrollv;
     private boolean isdestoryed = false;
 	private boolean m_bOpenCrazyMode = false;
+	private RelativeLayout mContainer;
 	private Button mLikeBtn;
 	private Button mRandomBtn;
 	private SwitchCompat mSoundSwitch;
@@ -70,6 +72,8 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 		initRandomColors();
 
 //        setAssetes();
+
+	    mContainer = (RelativeLayout) findViewById(R.id.container);
 
         m_libgdxFgm = (BalloonParticleFragment) getSupportFragmentManager().findFragmentById(R.id.libgdxFrag);
 
@@ -151,7 +155,7 @@ public class BalloonParticleEffectActivity extends FragmentActivity implements A
 //			float[] randomColor = mRandomColors.get( (int)(Math.random()*(mRandomColors.size()) ) );
 			float[] no = {-1f,-1f,-1f};
 			m_libgdxFgm.PlayAdd(BalloonParticleContants.BALLOON_PATHTYPE_EXTEND, getHeartBalloon(), 1000, no, false);
-			int dif = (int) ((float)Math.random()*200f+150f);
+			int dif = (int) ((float)Math.random()*100f+50f);
 			m_weakHandler.postDelayed(m_bigRunnable, dif);
 		}
 	}

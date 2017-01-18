@@ -49,6 +49,8 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
     //Screen 是否需要重建播放
     private boolean m_isNeedBuild =true;
 
+	private boolean m_hasBuilt = false;
+
     private WeakHandler m_WeakHandler = new WeakHandler();
 
     public void PlayAdd(int pathtype, String pathstring, int dur, float[] rgb, final boolean isSelf) {
@@ -97,15 +99,23 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 	}
 
     public void preDestory(){
+
+	    Log.d(TAG, "preDestory");
+
+	    if (!m_hasBuilt)
+		    return;
+
+	    particleEffectView.forceOver();
+	    particleEffectView.setCanDraw(false);
+
         m_isDestorying = true;
         m_isStoping = true;
-	    particleEffectView.setCanDraw(false);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+	    Log.d(TAG, "onCreateView");
         m_viewRooter = inflater.inflate(R.layout.lf_layout_giftparticle, null);
         return m_viewRooter;
     }
@@ -116,16 +126,8 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 		buildGDX();
 	}
 
-	public void cleanGDX(){
-        try {
-            particleEffectView.dispose();
-        }catch (Exception e){}
-        mContainer.removeAllViews();
-        particleEffectView = null;
-    }
-
     public void buildGDX(){
-
+	    Log.d(TAG, "buildGDX");
         particleEffectView = new BalloonParticleEffectView();
         View effectview = CreateGLAlpha(particleEffectView);
         mContainer = (InterceptableViewGroup) m_viewRooter.findViewById(R.id.container);
@@ -133,6 +135,7 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
 	    mContainer.setIntercept(true);
         Gdx.input.setInputProcessor(this);
         Gdx.input.setCatchBackKey(true);
+	    m_hasBuilt = true;
     }
 
     @Override
@@ -243,7 +246,6 @@ public class BalloonParticleFragment extends AndroidFragmentApplication implemen
         try {
             PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
             boolean isScreenOn = pm.isScreenOn();//如果为true，则表示屏幕“亮”了，否则屏幕“暗”了。
-            Log.d(TAG, "isScreenLock:" + !isScreenOn);
             return !isScreenOn;
         }catch (Exception e){
             e.printStackTrace();

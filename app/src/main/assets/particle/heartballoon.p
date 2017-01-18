@@ -111,10 +111,10 @@ timeline2: 0.7671233
 timeline3: 1.0
 - Rotation -
 active: true
-lowMin: -10.0
-lowMax: 10.0
-highMin: -30.0
-highMax: 30.0
+lowMin: -30.0
+lowMax: 30.0
+highMin: -60.0
+highMax: 60.0
 relative: false
 scalingCount: 5
 scaling0: 1.0
