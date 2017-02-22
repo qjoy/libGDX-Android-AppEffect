@@ -2,11 +2,13 @@
 
 ![image](http://7xox5k.com1.z0.glb.clouddn.com/15-12-5/13896084.jpg)
 
+##[libGDX游戏引擎官网地址](http://libgdx.badlogicgames.com)
 
 `What's libGDX?
 libGDX is a cross-platform Java game development framework based on OpenGL (ES) that works on Windows, Linux, Mac OS X, Android, your WebGL enabled browser and iOS.`
 
-我们关注如何结合Android原生APP开发，使用libGDX帮助我们实现高效的特效动画。
+用什么方式能够实现**高效的流畅的（拒绝卡顿）**烟花、物体碰撞、下雪效果。如何将游戏中常用的场景引入到原生App开发中呢？相信一定有人试图思考并尝试自己制作一些初级的游戏引擎，但绘制效率、框架等等都很难解决和完善，那么这篇文章可能会帮到你。如果你还想了解更多细节原理以及整体思想，下面还有几篇文章或许能够给你一些启发。
+**我们关注如何结合Android原生APP开发，使用libGDX帮助我们实现高效的特效动画。**
 
 ![](./cover1.gif)![](./cover2.gif)![](./cover3.gif)
 
