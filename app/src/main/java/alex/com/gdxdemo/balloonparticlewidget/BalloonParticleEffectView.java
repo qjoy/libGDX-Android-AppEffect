@@ -100,6 +100,20 @@ public class BalloonParticleEffectView implements ApplicationListener {
 
 	public void forceOver() {
 		forceOver = true;
+
+		for (ParticleInfo info : mParticles) {
+			if (info.particle != null)
+				info.particle.dispose();
+		}
+
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		if (mParticleEffectPool != null)
+			mParticleEffectPool.clear();
 	}
 
 	public void switchSound(boolean open){
