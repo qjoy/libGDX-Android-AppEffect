@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/container"
                 android:background="@color/word_dark"
-                tools:context=".GiftParticleEffectActivity">
+                tools:context=".FireWorksActivity">
 
 
 
@@ -79,7 +79,7 @@
 
 	<fragment
 		android:id="@+id/libgdxFrag"
-		android:name="alex.com.gdxdemo.balloonparticlewidget.BalloonParticleFragment"
+		android:name="alex.com.gdxdemo.balloon.BalloonParticleFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_marginBottom="70dp"

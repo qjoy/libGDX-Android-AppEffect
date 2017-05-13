@@ -21,14 +21,14 @@ public class MainActivity extends Activity {
 		SpringEffect.doEffectSticky(findViewById(R.id.gift), new Runnable() {
 			@Override
 			public void run() {
-				GiftParticleEffectActivity.launch(MainActivity.this);
+				FireWorksActivity.launch(MainActivity.this);
 			}
 		});
 
 		SpringEffect.doEffectSticky(findViewById(R.id.balloon), new Runnable() {
 			@Override
 			public void run() {
-				BalloonParticleEffectActivity.launch(MainActivity.this);
+				BalloonActivity.launch(MainActivity.this);
 			}
 		});
 

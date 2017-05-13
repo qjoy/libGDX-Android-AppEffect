@@ -3,67 +3,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/floralwhite"
-                tools:context=".GiftParticleEffectActivity">
+                tools:context=".FireWorksActivity">
 
 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:layout_margin="5dp"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:padding="10dp"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_centerInParent="true"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp"
-        >
+		<Button
+			android:id="@+id/gift"
+			android:layout_width="match_parent"
+			android:layout_height="80dp"
+			android:layout_margin="20dp"
+			android:layout_weight="1"
+			android:background="@drawable/testbtnsharp"
+			android:text="@string/gift_particle_demo"
+			android:textColor="@color/word_dark"
+			android:textSize="16sp"
+		/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            >
+		<Button
+			android:id="@+id/balloon"
+			android:layout_width="match_parent"
+			android:layout_height="80dp"
+			android:layout_margin="20dp"
+			android:layout_weight="1"
+			android:background="@drawable/testbtnsharp"
+			android:text="@string/balloon_particle_demo"
+			android:textColor="@color/word_dark"
+			android:textSize="16sp"
+		/>
 
-            <Button
-                android:id="@+id/gift"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/testbtnsharp"
-                android:text="Gift Particle Activity"
-                android:textColor="@color/word_dark"
-                android:textSize="14dp"
-                />
+		<Button
+			android:id="@+id/box2d"
+			android:layout_width="match_parent"
+			android:layout_height="80dp"
+			android:layout_margin="20dp"
+			android:layout_weight="1"
+			android:background="@drawable/testbtnsharp"
+			android:text="@string/box_particle_demo"
+			android:textColor="@color/word_dark"
+			android:textSize="16sp"
+		/>
 
-	        <Button
-		        android:id="@+id/balloon"
-		        android:layout_width="match_parent"
-		        android:layout_height="80dp"
-		        android:layout_margin="10dp"
-		        android:layout_weight="1"
-		        android:background="@drawable/testbtnsharp"
-		        android:text="Balloon Particle Activity"
-		        android:textColor="@color/word_dark"
-		        android:textSize="14dp"
-	        />
-
-	        <Button
-		        android:id="@+id/box2d"
-		        android:layout_width="match_parent"
-		        android:layout_height="80dp"
-		        android:layout_margin="5dp"
-		        android:layout_weight="1"
-		        android:background="@drawable/testbtnsharp"
-		        android:text="Box2D Activity"
-		        android:textColor="@color/word_dark"
-		        android:textSize="14dp"
-	        />
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-
+	</LinearLayout>
 
 </RelativeLayout>

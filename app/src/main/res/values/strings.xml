@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+	<string name="gift_particle_demo">礼花特效</string>
+	<string name="balloon_particle_demo">点赞冒泡特效</string>
+	<string name="box_particle_demo">掉落碰撞特效</string>
+	<string name="btn_send_star">送星星</string>
 </resources>
