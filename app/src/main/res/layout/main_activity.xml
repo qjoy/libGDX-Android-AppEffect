@@ -51,6 +51,18 @@
 			android:textColor="@color/word_dark"
 			android:textSize="16sp"
 		/>
+		
+		<Button
+			android:id="@+id/animation"
+			android:layout_width="match_parent"
+			android:layout_height="80dp"
+			android:layout_margin="20dp"
+			android:layout_weight="1"
+			android:background="@drawable/testbtnsharp"
+			android:text="@string/atlas_animation_demo"
+			android:textColor="@color/word_dark"
+			android:textSize="16sp"
+		/>
 
 	</LinearLayout>
 

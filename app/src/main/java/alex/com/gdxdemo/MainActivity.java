@@ -38,6 +38,13 @@ public class MainActivity extends Activity {
 				Box2dActivity.launch(MainActivity.this);
 			}
 		});
+
+		SpringEffect.doEffectSticky(findViewById(R.id.animation), new Runnable() {
+			@Override
+			public void run() {
+				AnimationActivity.launch(MainActivity.this);
+			}
+		});
 	}
 
 }

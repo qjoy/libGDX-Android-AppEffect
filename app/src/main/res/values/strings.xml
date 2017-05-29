@@ -8,4 +8,7 @@
 	<string name="balloon_particle_demo">点赞冒泡特效</string>
 	<string name="box_particle_demo">掉落碰撞特效</string>
 	<string name="btn_send_star">送星星</string>
+	
+	<string name="atlas_animation_demo">动画特效</string>
+	<string name="btn_atlas_animation_start">启动动画</string>
 </resources>
