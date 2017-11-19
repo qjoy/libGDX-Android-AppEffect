@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "alex.com.gdxdemo"
-        minSdkVersion 8
+        minSdkVersion 11
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -40,7 +40,6 @@ dependencies {
     compile 'com.badoo.mobile:android-weak-handler:1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.facebook.rebound:rebound:0.3.6'
-    compile 'com.jakewharton:butterknife:7.0.1'
 
     compile "com.badlogicgames.gdx:gdx-backend-android:1.9.6"
     natives "com.badlogicgames.gdx:gdx-platform:1.9.6:natives-armeabi-v7a"

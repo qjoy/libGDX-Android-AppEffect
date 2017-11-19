@@ -19,8 +19,6 @@ import com.badoo.mobile.util.WeakHandler;
 import alex.com.gdxdemo.box2d.Box2DFragment;
 import alex.com.gdxdemo.box2d.Tools.GiftParticleContants;
 import alex.com.gdxdemo.testcode.SpringEffect;
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class Box2dActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks{
 
@@ -32,7 +30,6 @@ public class Box2dActivity extends FragmentActivity implements AndroidFragmentAp
 	private int m_giftIndex = 1;
 	private int m_giftCounter = 0;
 
-	@Bind(R.id.lyt_container)
 	public FrameLayout m_container;
 
 	public static void launch(Context context) {
@@ -47,7 +44,7 @@ public class Box2dActivity extends FragmentActivity implements AndroidFragmentAp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.box2d_activity);
 
-        ButterKnife.bind(this);
+	    m_container = (FrameLayout) findViewById(R.id.lyt_container);
 
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -111,7 +108,6 @@ public class Box2dActivity extends FragmentActivity implements AndroidFragmentAp
         super.onDestroy();
         unregisterReceiver(m_systemreceiveBroadCast);
         m_weakHandler.removeCallbacks(m_runnableCrazyMode);
-        ButterKnife.unbind(this);
     }
 
     @Override
