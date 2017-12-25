@@ -10,6 +10,8 @@ android:
     # - tools
     # - platform-tools
 
+    - chmod +x gradlew
+
     # The BuildTools version used by your project
     - build-tools-19.1.0
 
