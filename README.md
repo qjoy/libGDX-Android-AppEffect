@@ -2,6 +2,9 @@
 
 ![image](http://7xox5k.com1.z0.glb.clouddn.com/15-12-5/13896084.jpg)
 
+![image](https://travis-ci.org/qjoy/libGDX-Android-AppEffect.svg?branch=master)
+
+
 ##[libGDX游戏引擎官网地址](http://libgdx.badlogicgames.com)
 
 `What's libGDX?
