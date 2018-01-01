@@ -82,17 +82,22 @@ public class LibgdxSpineEffectView implements ApplicationListener {
 	}
 
 	public void setAction(String actionName){
-		switch (actionName){
-			case "run":
-				state.setAnimation(0, "run", true);
-				break;
-			case "walk":
-				state.setAnimation(0, "walk", true);
-				break;
-			case "jump":
-				state.setAnimation(0, "jump", false);
-				state.addAnimation(0, "run", true, 0);
-				break;
+		try {
+			switch (actionName) {
+				case "run":
+					state.setAnimation(0, "run", true);
+					break;
+				case "walk":
+					state.setAnimation(0, "walk", true);
+					break;
+				case "jump":
+					state.setAnimation(0, "jump", false);
+					state.addAnimation(0, "run", true, 0);
+					break;
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 

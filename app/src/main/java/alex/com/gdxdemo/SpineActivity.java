@@ -7,21 +7,19 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
 import alex.com.gdxdemo.fireworks.GiftParticleContants;
 import alex.com.gdxdemo.spine.LibgdxSpineFragment;
+import alex.com.gdxdemo.testcode.SpringEffect;
 
 /**
  * Created by QJoy on 2017.12.25.
  */
 
-public class SpineActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks,
-		View.OnClickListener
+public class SpineActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks
 {
 
     private LibgdxSpineFragment m_libgdxFgm;
@@ -48,12 +46,26 @@ public class SpineActivity extends FragmentActivity implements AndroidFragmentAp
 
         m_libgdxFgm = (LibgdxSpineFragment) getSupportFragmentManager().findFragmentById(R.id.libgdxFrag);
 
-		Button jump = (Button) findViewById(R.id.jump);
-	    Button walk = (Button) findViewById(R.id.walk);
-	    Button run = (Button) findViewById(R.id.run);
-	    jump.setOnClickListener(this);
-	    walk.setOnClickListener(this);
-	    run.setOnClickListener(this);
+	    SpringEffect.doEffectSticky(findViewById(R.id.jump), new Runnable() {
+		    @Override
+		    public void run() {
+			    m_libgdxFgm.setAction("jump");
+		    }
+	    });
+
+	    SpringEffect.doEffectSticky(findViewById(R.id.walk), new Runnable() {
+		    @Override
+		    public void run() {
+			    m_libgdxFgm.setAction("walk");
+		    }
+	    });
+
+	    SpringEffect.doEffectSticky(findViewById(R.id.run), new Runnable() {
+		    @Override
+		    public void run() {
+			    m_libgdxFgm.setAction("run");
+		    }
+	    });
     }
 
     @Override
@@ -67,22 +79,6 @@ public class SpineActivity extends FragmentActivity implements AndroidFragmentAp
     public void exit() {
 
     }
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId())
-		{
-			case R.id.run:
-				m_libgdxFgm.setAction("run");
-				break;
-			case R.id.walk:
-				m_libgdxFgm.setAction("walk");
-				break;
-			case R.id.jump:
-				m_libgdxFgm.setAction("jump");
-				break;
-		}
-	}
 
 	public class SystemReceiveBroadCast extends BroadcastReceiver {
 
