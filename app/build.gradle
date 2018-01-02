@@ -45,4 +45,6 @@ dependencies {
     natives "com.badlogicgames.gdx:gdx-platform:1.9.6:natives-armeabi-v7a"
     compile "com.badlogicgames.gdx:gdx-box2d:1.9.6"
     natives "com.badlogicgames.gdx:gdx-box2d-platform:1.9.6:natives-armeabi-v7a"
+
+    compile "com.esotericsoftware.spine:spine-libgdx:3.5.51.1"
 }
