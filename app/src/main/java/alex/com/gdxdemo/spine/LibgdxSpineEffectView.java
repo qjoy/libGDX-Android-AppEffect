@@ -41,6 +41,8 @@ public class LibgdxSpineEffectView implements ApplicationListener {
 
 	private boolean m_candraw = true;
 
+	private volatile boolean loadingAnimate = true;
+
 	OrthographicCamera camera;
 	SpriteBatch batch;
 	SkeletonRenderer renderer;
@@ -121,26 +123,40 @@ public class LibgdxSpineEffectView implements ApplicationListener {
 		debugRenderer.setBoundingBoxes(false);
 		debugRenderer.setRegionAttachments(false);
 
+/*
+*		libgdx资源加载必须在create所在线程执行，如果此步骤耗时过程可以考虑使用AssetManager的方式加载
+* */
 		atlas = new TextureAtlas(Gdx.files.internal("spineboy/spineboy-pma.atlas"));
-		SkeletonJson json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
-		json.setScale(0.6f); // Load the skeleton at 60% the size it was in Spine.
-		SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("spineboy/spineboy-ess.json"));
+/*
+*		spine动画加载数据过大，耗时过长，可以移动到子线程中执行
+* */
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
 
-		skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
-		skeleton.setPosition(mWidth/2, 20);
+				SkeletonJson json = new SkeletonJson(atlas); // This loads skeleton JSON data, which is stateless.
+				json.setScale(0.6f); // Load the skeleton at 60% the size it was in Spine.
+				SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("spineboy/spineboy-ess.json"));
+				skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
+				skeleton.setPosition(mWidth/2, 20);
 
-		AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-		stateData.setMix("run", "jump", 0.2f);
-		stateData.setMix("jump", "run", 0.2f);
+				AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
+				stateData.setMix("run", "jump", 0.2f);
+				stateData.setMix("jump", "run", 0.2f);
 
-		stateData.setMix("run","walk",1f);
-		stateData.setMix("walk","run",1f);
+				stateData.setMix("run","walk",1f);
+				stateData.setMix("walk","run",1f);
 
-		state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
-		state.setTimeScale(1.0f); // Slow all animations down to 50% speed.
+				state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
+				state.setTimeScale(1.0f); // Slow all animations down to 50% speed.
 
-		// Queue animations on track 0.
-		state.setAnimation(0, "idle", true);
+				// Queue animations on track 0.
+				state.setAnimation(0, "idle", true);
+
+				loadingAnimate = false;
+			}
+		}).start();
+
 	}
 
 	@Override
@@ -174,6 +190,9 @@ public class LibgdxSpineEffectView implements ApplicationListener {
 			//			放置不可见时手动销毁的内容
 			return;
 		}
+
+		if (loadingAnimate)
+			return;
 
 //		放置动画逻辑
 		state.update(Gdx.graphics.getDeltaTime()); // Update the animation time.
