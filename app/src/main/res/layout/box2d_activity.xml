@@ -24,5 +24,19 @@
 		android:textColor="@color/word_dark"
 		android:textSize="13sp"
 	/>
+	
+	<Button
+		android:id="@+id/crazyModeBtn"
+		android:layout_below="@id/sendStarBtn"
+		android:layout_width="70dp"
+		android:layout_height="45dp"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="30dp"
+		android:background="@drawable/particlestylescrazymodebtnsharp"
+		android:padding="3dp"
+		android:text="@string/btn_send_star"
+		android:textColor="@color/white"
+		android:textSize="13sp"
+	/>
 
 </RelativeLayout>

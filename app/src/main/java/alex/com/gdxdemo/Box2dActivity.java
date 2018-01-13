@@ -64,6 +64,27 @@ public class Box2dActivity extends FragmentActivity implements AndroidFragmentAp
 			    m_weakHandler.postDelayed(m_runnableSendStar, 50);
 		    }
 	    });
+
+	    SpringEffect.doEffectSticky(findViewById(R.id.crazyModeBtn), new Runnable() {
+		    @Override
+		    public void run() {
+			    new Thread(new Runnable() {
+				    @Override
+				    public void run() {
+					    for (int i=0; i<1000; i++) {
+						    try {
+							    Thread.sleep(50);
+						    } catch (InterruptedException e) {
+							    e.printStackTrace();
+						    }
+						    m_weakHandler.postDelayed(m_runnableSendStar, 50);
+
+					    }
+				    }
+			    }).start();
+
+		    }
+	    });
     }
 
     private boolean m_testleft = false;
