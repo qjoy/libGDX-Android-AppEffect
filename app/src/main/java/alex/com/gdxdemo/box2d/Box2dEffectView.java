@@ -28,6 +28,7 @@ import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import alex.com.gdxdemo.MyApplication;
 import alex.com.gdxdemo.box2d.Beans.BallInfo;
 import alex.com.gdxdemo.box2d.Beans.Box2dConstant;
 import alex.com.gdxdemo.box2d.Tools.Transform;
@@ -41,7 +42,7 @@ import alex.com.gdxdemo.box2d.Tools.Transform;
 public class Box2dEffectView implements ApplicationListener {
 
     private static final String TAG = "Box2dEffectView";
-    private static final float PXTM = 30;
+    private static float PXTM = 15;
     private OrthographicCamera camera;
     private Box2DDebugRenderer m_debugRenderer;
     private World world;
@@ -63,6 +64,8 @@ public class Box2dEffectView implements ApplicationListener {
     @Override
     public void create() {
 
+	    PXTM = (MyApplication.getDens() / 80 - 1 )*5;
+
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
 
@@ -76,7 +79,7 @@ public class Box2dEffectView implements ApplicationListener {
 
         m_spriteBatch = new SpriteBatch();
 
-        world = new World(new Vector2(0f, -60f), true);
+        world = new World(new Vector2(0f, -120f), true);
 
 	    world.setContactListener(new MyContactListener());
 
@@ -158,8 +161,8 @@ public class Box2dEffectView implements ApplicationListener {
             BodyDef BallBodydef = new BodyDef();
             BallBodydef.type = BodyDef.BodyType.DynamicBody;
 
-            float thrownXRandom = (float) Math.random() * 26.0f + 4.0f;
-            float thrownYRandom = -( (float) Math.random() * 15.0f + 3.0f );
+            float thrownXRandom = (float) Math.random() * 30.0f + 4.0f;
+            float thrownYRandom = -( (float) Math.random() * 20.0f + 3.0f );
 	        float yRandomStart = (float) Math.random() * 8f;
             if (isLeft) {
                 BallBodydef.linearVelocity.set(thrownXRandom, thrownYRandom);
@@ -389,4 +392,5 @@ public class Box2dEffectView implements ApplicationListener {
 
 		}
 	}
+
 }
