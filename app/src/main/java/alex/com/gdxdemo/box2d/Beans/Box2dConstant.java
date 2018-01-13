@@ -8,8 +8,8 @@ package alex.com.gdxdemo.box2d.Beans;
 
 public class Box2dConstant {
 
-	public static final int MaxBallCounter = 380;
-	public static final float MaxBallLifer = 10f;
+	public static final int MaxBallCounter = 80;
+	public static final float MaxBallLifer = 3f;
 	public static final float MaxBallLiferSP = MaxBallLifer - 0.4f;
 
 }
