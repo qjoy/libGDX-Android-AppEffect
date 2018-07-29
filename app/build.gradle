@@ -41,10 +41,42 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.facebook.rebound:rebound:0.3.6'
 
-    compile "com.badlogicgames.gdx:gdx-backend-android:1.9.6"
-    natives "com.badlogicgames.gdx:gdx-platform:1.9.6:natives-armeabi-v7a"
-    compile "com.badlogicgames.gdx:gdx-box2d:1.9.6"
-    natives "com.badlogicgames.gdx:gdx-box2d-platform:1.9.6:natives-armeabi-v7a"
+    compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+    compile "com.badlogicgames.gdx:gdx-box2d:$box2dVersion"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$box2dVersion:natives-armeabi"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$box2dVersion:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$box2dVersion:natives-arm64-v8a"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$box2dVersion:natives-x86"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$box2dVersion:natives-x86_64"
 
     compile "com.esotericsoftware.spine:spine-libgdx:3.5.51.1"
+}
+
+task copyAndroidNatives() {
+    file("libs/armeabi/").mkdirs();
+    file("libs/armeabi-v7a/").mkdirs();
+    file("libs/arm64-v8a/").mkdirs();
+    file("libs/x86_64/").mkdirs();
+    file("libs/x86/").mkdirs();
+
+    configurations.natives.files.each { jar ->
+        def outputDir = null
+        if(jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("libs/arm64-v8a")
+        if(jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a")
+        if(jar.name.endsWith("natives-armeabi.jar")) outputDir = file("libs/armeabi")
+        if(jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64")
+        if(jar.name.endsWith("natives-x86.jar")) outputDir = file("libs/x86")
+        if(outputDir != null) {
+            copy {
+                from zipTree(jar)
+                into outputDir
+                include "*.so"
+            }
+        }
+    }
 }
